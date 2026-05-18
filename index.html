@@ -264,7 +264,7 @@ body.dark .themeKnob{
 .btn.warn{color:var(--orange);background:rgba(255,107,0,.10);border:1px solid rgba(255,107,0,.18);padding:9px 13px}
 .btn.warn:hover{background:rgba(255,107,0,.16);color:var(--orange)}
 .stage{overflow:auto;padding:16px 20px 60px}.stage::-webkit-scrollbar,.chatBody::-webkit-scrollbar{width:7px}.stage::-webkit-scrollbar-thumb,.chatBody::-webkit-scrollbar-thumb{background:rgba(255,107,0,.35);border-radius:99px}.panel{display:none;animation:fade .2s}.panel.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px;padding:16px;display:flex;flex-direction:column}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:160px;height:160px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
+.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px;padding:16px;display:flex;flex-direction:column}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:160px;height:160px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
 .cardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px;position:relative}.cardHead h3{text-transform:uppercase;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--muted)}
 .bigMetric{font-size:52px;line-height:.9;letter-spacing:-.08em;font-weight:950;margin-top:12px}.bigMetric small{font-size:14px;letter-spacing:0;color:var(--muted);margin-left:6px}
 .metricStrip{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--paper)}.metric{padding:10px 12px;border-right:1px solid var(--line);text-align:center}.metric:last-child{border-right:0}.metric label{display:block;color:var(--muted);font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:4px;font-size:18px}
@@ -541,28 +541,44 @@ body.dark .toggle-moon{ opacity:0!important; }
           </article>
           <article class="editorialCard cut">
             <div class="cardHead"><h3>Facturación por empresa</h3><span class="statusPill ok">$3.54M total</span></div>
-            <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
-              <div style="position:relative;flex-shrink:0">
-                <canvas id="pieChart" width="130" height="130"></canvas>
-                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
-                  <span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Total</span>
-                  <b style="font-size:15px;letter-spacing:-.03em">$3.54M</b>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:6px;flex:1;justify-content:center">
+
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
+                  <span style="font-size:13px;font-weight:700">YPF S.A.</span>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.550.000 <b style="color:var(--ink)">43.8%</b></span>
+                </div>
+                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
+                  <div style="width:43.8%;height:100%;background:linear-gradient(90deg,#ff6b00,#ffaa55);border-radius:6px;position:relative">
+                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
+                  </div>
                 </div>
               </div>
-              <div style="display:grid;gap:7px;flex:1">
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#ff6b00;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">YPF S.A.</span></div>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.550.000 <span style="color:var(--ink);font-weight:700">43.8%</span></span>
+
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
+                  <span style="font-size:13px;font-weight:700">Pan American Energy</span>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.100.000 <b style="color:var(--ink)">31.1%</b></span>
                 </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#3483fa;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">Pan American</span></div>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.100.000 <span style="color:var(--ink);font-weight:700">31.1%</span></span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#059669;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">TGN</span></div>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$890.000 <span style="color:var(--ink);font-weight:700">25.1%</span></span>
+                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
+                  <div style="width:31.1%;height:100%;background:linear-gradient(90deg,#c95000,#ff8c40);border-radius:6px;position:relative">
+                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
+                  </div>
                 </div>
               </div>
+
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
+                  <span style="font-size:13px;font-weight:700">TGN</span>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$890.000 <b style="color:var(--ink)">25.1%</b></span>
+                </div>
+                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
+                  <div style="width:25.1%;height:100%;background:linear-gradient(90deg,#7a3000,#d4620a);border-radius:6px;position:relative">
+                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
             <div class="workflow" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:8px">
               <button onclick="showModule('contratos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Contratos</b><small>Cartera y vencimientos.</small></button>
