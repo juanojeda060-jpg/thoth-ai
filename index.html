@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOTH AI — Enterprise Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg0: #080a0d;
+  --bg1: #0d1117;
+  --bg2: #131820;
+  --bg3: #1a2030;
+  --bg4: #202840;
+  --line: rgba(255,255,255,0.06);
+  --line2: rgba(255,255,255,0.11);
+  --line3: rgba(255,255,255,0.18);
+  --text: #d4dbe8;
+  --text2: #7a8899;
+  --text3: #465060;
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --gold-dim: rgba(201,168,76,0.1);
+  --gold-dim2: rgba(201,168,76,0.18);
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.1);
+  --green: #3dbe8c;
+  --green-dim: rgba(61,190,140,0.09);
+  --blue: #4a90d9;
+  --blue-dim: rgba(74,144,217,0.1);
+  --amber: #d4892a;
+  --amber-dim: rgba(212,137,42,0.1);
+  --mono: 'IBM Plex Mono', monospace;
+  --body: 'Outfit', sans-serif;
+  --serif: 'Fraunces', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg0);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.55;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── TOPBAR ─── */
+.topbar {
+  height: 48px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 32px;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  position: relative;
+}
+
+.logo-icon svg { width: 28px; height: 28px; }
+
+.logo-text {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--gold2);
+}
+
+.logo-sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: -2px;
+}
+
+.top-nav {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+
+.top-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 16px;
+  font-size: 12px;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--text3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.top-nav-item:hover { color: var(--text2); background: rgba(255,255,255,0.02); }
+.top-nav-item.active { color: var(--gold); border-bottom-color: var(--gold); background: var(--gold-dim); }
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.sys-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pulse {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.ai-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  background: var(--gold-dim2);
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.25);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* ─── BODY ─── */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ─── LEFT SIDEBAR ─── */
+.sidebar {
+  width: 200px;
+  background: var(--bg1);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 16px 0;
+}
+
+.sb-section {
+  margin-bottom: 20px;
+}
+
+.sb-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--text3);
+  text-transform: uppercase;
+  padding: 0 16px;
+  margin-bottom: 4px;
+}
+
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.12s;
+  border-left: 2px solid transparent;
+  user-select: none;
+}
+
+.sb-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+
+.sb-item.active {
+  color: var(--gold);
+  background: var(--gold-dim);
+  border-left-color: var(--gold);
+}
+
+.sb-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sb-dot.green { background: var(--green); }
+.sb-dot.amber { background: var(--amber); }
+.sb-dot.red { background: var(--red); }
+
+.sb-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 8px 16px;
+}
+
+/* ─── MAIN AREA ─── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg0);
+}
+
+/* ─── MODULE HEADER ─── */
+.mod-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg1);
+  flex-shrink: 0;
+}
+
+.mod-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mod-title-sep { color: var(--text3); }
+
+.mod-actions { display: flex; align-items: center; gap: 8px; }
+
+.btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid var(--line2);
+  background: var(--bg2);
+  color: var(--text2);
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.btn:hover { border-color: var(--line3); color: var(--text); background: var(--bg3); }
+
+.btn-gold {
+  background: var(--gold-dim2);
+  border-color: rgba(201,168,76,0.3);
+  color: var(--gold);
+}
+
+.btn-gold:hover { background: rgba(201,168,76,0.25); }
+
+/* ─── CONTENT ─── */
+.content-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ─── PANEL ─── */
+.data-panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.data-panel::-webkit-scrollbar { width: 4px; }
+.data-panel::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 4px; }
+
+/* ─── ALERT BAR ─── */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.alert-crit { background: var(--red-dim); border: 1px solid rgba(224,82,82,0.2); }
+.alert-warn { background: var(--amber-dim); border: 1px solid rgba(212,137,42,0.22); }
+.alert-info { background: var(--blue-dim); border: 1px solid rgba(74,144,217,0.2); }
+
+.alert-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.alert-crit .alert-icon { color: var(--red); }
+.alert-warn .alert-icon { color: var(--amber); }
+.alert-info .alert-icon { color: var(--blue); }
+
+.alert strong { font-weight: 600; }
+.alert-crit strong { color: var(--red); }
+.alert-warn strong { color: var(--amber); }
+.alert-info strong { color: var(--blue); }
+
+/* ─── KPI GRID ─── */
+.kpi-grid { display: grid; gap: 10px; }
+.kpi-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.kpi-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.kpi {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.kpi.ok::before { background: var(--green); }
+.kpi.warn::before { background: var(--amber); }
+.kpi.crit::before { background: var(--red); }
+.kpi.neutral::before { background: var(--text3); }
+
+.kpi-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.kpi-val {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.kpi-delta {
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.kpi-delta.pos { color: var(--green); }
+.kpi-delta.neg { color: var(--red); }
+.kpi-delta.neu { color: var(--amber); }
+
+/* ─── SECTION HEADER ─── */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sec-head-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--text3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sec-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ─── TABLE ─── */
+.t-wrap { border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+
+table.dt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+table.dt th {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 8px 12px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  font-weight: 500;
+}
+
+table.dt td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text2);
+}
+
+table.dt tr:last-child td { border-bottom: none; }
+table.dt tr:hover td { background: rgba(255,255,255,0.015); }
+
+.mono { font-family: var(--mono); font-size: 11px; color: var(--text); }
+.mono.pos { color: var(--green); }
+.mono.neg { color: var(--red); }
+.mono.warn { color: var(--amber); }
+
+.badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.badge-ok { background: var(--green-dim); color: var(--green); border: 1px solid rgba(61,190,140,0.2); }
+.badge-warn { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(212,137,42,0.22); }
+.badge-crit { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.2); }
+.badge-info { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(74,144,217,0.2); }
+.badge-gold { background: var(--gold-dim2); color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+
+/* ─── PROGRESS ─── */
+.prog-wrap { display: flex; align-items: center; gap: 8px; }
+.prog-bar { width: 70px; height: 3px; background: var(--bg4); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 2px; }
+
+/* ─── MODULE PANELS ─── */
+.mod-panel { display: none; flex-direction: column; gap: 20px; }
+.mod-panel.active { display: flex; }
+
+/* ─── SEMAPHORE ─── */
+.sem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.sem-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 16px;
+  text-align: center;
+}
+
+.sem-light {
+  width: 24px; height: 24px; border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.sem-light.ok { background: var(--green); box-shadow: 0 0 10px rgba(61,190,140,0.35); }
+.sem-light.warn { background: var(--amber); box-shadow: 0 0 10px rgba(212,137,42,0.35); }
+.sem-light.crit { background: var(--red); box-shadow: 0 0 10px rgba(224,82,82,0.35); }
+
+.sem-metric {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sem-val {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.sem-desc { font-size: 10px; color: var(--text3); }
+
+/* ─── AI CHAT PANEL ─── */
+.chat-rail {
+  width: 360px;
+  background: var(--bg1);
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.chat-top {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-top-left { display: flex; flex-direction: column; gap: 2px; }
+
+.chat-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.chat-ctx {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+}
+
+.model-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  background: var(--bg3);
+  border: 1px solid var(--line2);
+  color: var(--text3);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.chat-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-msgs::-webkit-scrollbar { width: 3px; }
+.chat-msgs::-webkit-scrollbar-thumb { background: var(--bg4); }
+
+.msg-user {
+  align-self: flex-end;
+  background: var(--gold-dim2);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 5px 5px 2px 5px;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: var(--text);
+  max-width: 88%;
+  line-height: 1.5;
+  animation: fadeIn 0.18s ease;
+}
+
+.msg-ai {
+  align-self: flex-start;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 5px 5px 5px 2px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text2);
+  max-width: 100%;
+  line-height: 1.6;
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-msg-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.msg-ai strong { color: var(--text); font-weight: 500; }
+.msg-ai .pos { color: var(--green); font-family: var(--mono); font-size: 11px; }
+.msg-ai .neg { color: var(--red); font-family: var(--mono); font-size: 11px; }
+.msg-ai .warn { color: var(--amber); font-family: var(--mono); font-size: 11px; }
+.msg-ai table { width: 100%; border-collapse: collapse; margin: 7px 0; font-size: 11px; }
+.msg-ai th { font-family: var(--mono); font-size: 9px; color: var(--text3); padding: 4px 7px; border-bottom: 1px solid var(--line); text-align: left; }
+.msg-ai td { padding: 4px 7px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text2); }
+.msg-ai .num { font-family: var(--mono); color: var(--text); }
+
+.typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 10px 12px;
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 5px; align-self: flex-start;
+}
+
+.typing span {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--text3); animation: dot 1.2s infinite;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
+
+/* ─── QUICK PROMPTS ─── */
+.qp-area {
+  border-top: 1px solid var(--line);
+  padding: 8px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.qp {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  color: var(--text3);
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.qp:hover { border-color: rgba(201,168,76,0.3); color: var(--gold); background: var(--gold-dim); }
+
+/* ─── INPUT ─── */
+.chat-input-wrap {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 7px;
+  align-items: flex-end;
+}
+
+textarea.chat-in {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 4px;
+  padding: 8px 10px;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 12px;
+  resize: none;
+  outline: none;
+  min-height: 36px;
+  max-height: 100px;
+  line-height: 1.5;
+  transition: border 0.12s;
+}
+
+textarea.chat-in:focus { border-color: rgba(201,168,76,0.35); }
+textarea.chat-in::placeholder { color: var(--text3); }
+
+.send-btn {
+  width: 34px; height: 34px;
+  background: var(--gold-dim2);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+
+.send-btn:hover { background: rgba(201,168,76,0.25); }
+.send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.send-btn svg { width: 14px; height: 14px; fill: var(--gold); }
+
+/* ─── FILE UPLOAD INDICATOR ─── */
+.upload-zone {
+  margin: 0 14px 8px;
+  border: 1px dashed var(--line2);
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.upload-zone:hover { border-color: rgba(201,168,76,0.35); background: var(--gold-dim); }
+
+.upload-icon { font-size: 14px; color: var(--text3); }
+.upload-text { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; color: var(--text3); }
+</style>
+</head>
+<body>
+
+<!-- ─── TOPBAR ─── -->
+<div class="topbar">
+  <div class="logo-mark">
+    <div class="logo-icon">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="14,2 26,9 26,19 14,26 2,19 2,9" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+        <polygon points="14,7 21,11 21,17 14,21 7,17 7,11" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="0.6"/>
+        <circle cx="14" cy="14" r="3" fill="#c9a84c"/>
+        <line x1="14" y1="2" x2="14" y2="7" stroke="#c9a84c" stroke-width="0.8"/>
+        <line x1="14" y1="21" x2="14" y2="26" stroke="#c9a84c" stroke-width="0.8"/>
+        <line x1="2" y1="9" x2="7" y2="11" stroke="#c9a84c" stroke-width="0.8"/>
+        <line x1="21" y1="17" x2="26" y2="19" stroke="#c9a84c" stroke-width="0.8"/>
+        <line x1="26" y1="9" x2="21" y2="11" stroke="#c9a84c" stroke-width="0.8"/>
+        <line x1="7" y1="17" x2="2" y2="19" stroke="#c9a84c" stroke-width="0.8"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-text">THOTH AI</div>
+      <div class="logo-sub">Enterprise</div>
+    </div>
+  </div>
+
+  <nav class="top-nav">
+    <div class="top-nav-item active" onclick="switchMod('dashboard', this)">◈ Dashboard</div>
+    <div class="top-nav-item" onclick="switchMod('costos', this)">◉ Costos</div>
+    <div class="top-nav-item" onclick="switchMod('evm', this)">◑ EVM</div>
+    <div class="top-nav-item" onclick="switchMod('contratos', this)">◐ Contratos</div>
+    <div class="top-nav-item" onclick="switchMod('cashflow', this)">◇ Cash Flow</div>
+    <div class="top-nav-item" onclick="switchMod('pliegos', this)">◆ Pliegos</div>
+  </nav>
+
+  <div class="top-right">
+    <div class="sys-status"><div class="pulse"></div>Sistema Activo</div>
+    <div class="ai-badge">IA INTEGRADA</div>
+  </div>
+</div>
+
+<!-- ─── APP BODY ─── -->
+<div class="app-body">
+
+  <!-- ─── LEFT SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Proyectos</div>
+      <div class="sb-item active" onclick="loadProj('YPF-001', this)">
+        <div class="sb-dot green"></div> YPF-Proy-001
+      </div>
+      <div class="sb-item" onclick="loadProj('TGN-A', this)">
+        <div class="sb-dot amber"></div> TGN-Servicio-A
+      </div>
+      <div class="sb-item" onclick="loadProj('PAE-002', this)">
+        <div class="sb-dot red"></div> PAE-Mant-002
+      </div>
+    </div>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-section">
+      <div class="sb-label">Clientes</div>
+      <div class="sb-item" onclick="sendQ('Estado contratos cliente YPF S.A.')">YPF S.A.</div>
+      <div class="sb-item" onclick="sendQ('Estado contratos cliente TGN')">TGN</div>
+      <div class="sb-item" onclick="sendQ('Estado contratos Pan American Energy')">Pan American</div>
+    </div>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-section">
+      <div class="sb-label">Acceso Rápido</div>
+      <div class="sb-item" onclick="sendQ('Alertas críticas activas en toda la cartera')">⚠ Alertas</div>
+      <div class="sb-item" onclick="sendQ('Vencimientos contractuales próximos 60 días')">◷ Vencimientos</div>
+      <div class="sb-item" onclick="sendQ('Resumen ejecutivo cartera completa')">◈ Resumen Ejec.</div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main">
+    <div class="mod-header">
+      <div class="mod-title" id="mod-title-bar">
+        <span id="mod-title-text">Dashboard Ejecutivo</span>
+        <span class="mod-title-sep">/</span>
+        <span style="color:var(--text3);font-size:10px" id="mod-subtitle">Cartera Activa · 3 Proyectos</span>
+      </div>
+      <div class="mod-actions">
+        <button class="btn" onclick="sendQ('Generar reporte ejecutivo completo de la cartera')">↗ Reporte Ejec.</button>
+        <button class="btn btn-gold" onclick="sendQ('Analizar riesgos críticos activos')">⚠ Ver Riesgos</button>
+      </div>
+    </div>
+
+    <div class="content-area">
+      <div class="data-panel" id="data-panel">
+
+        <!-- ─── DASHBOARD ─── -->
+        <div class="mod-panel active" id="mod-dashboard">
+
+          <div class="alert alert-crit">
+            <span class="alert-icon">⚠</span>
+            <div><strong>ALERTA CRÍTICA — PAE-Mant-002:</strong> CPI 0.82 · Sobrecosto proyectado +$241K · SPI 0.91. EAC $1.34M vs BAC $1.1M. Acción correctiva requerida.</div>
+          </div>
+
+          <div>
+            <div class="sec-head"><div class="sec-head-label">KPIs Cartera</div></div>
+            <div class="kpi-grid kpi-grid-4">
+              <div class="kpi ok">
+                <div class="kpi-label">Facturación MTD</div>
+                <div class="kpi-val">$2.4M</div>
+                <div class="kpi-delta pos">▲ +8.3% vs plan</div>
+              </div>
+              <div class="kpi warn">
+                <div class="kpi-label">Margen Bruto Prom.</div>
+                <div class="kpi-val">23.1%</div>
+                <div class="kpi-delta neu">▼ -2.4pp vs objetivo</div>
+              </div>
+              <div class="kpi crit">
+                <div class="kpi-label">CPI Cartera</div>
+                <div class="kpi-val">0.94</div>
+                <div class="kpi-delta neg">▼ Bajo óptimo (&gt;1.0)</div>
+              </div>
+              <div class="kpi warn">
+                <div class="kpi-label">SPI Cartera</div>
+                <div class="kpi-val">0.97</div>
+                <div class="kpi-delta neu">Leve atraso</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Estado de Proyectos</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>Proyecto</th><th>Cliente</th><th>Avance</th>
+                    <th>CPI</th><th>SPI</th><th>Margen</th>
+                    <th>Vence</th><th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:500;color:var(--text)">YPF-Proy-001</td>
+                    <td>YPF S.A.</td>
+                    <td>
+                      <div class="prog-wrap">
+                        <div class="prog-bar"><div class="prog-fill" style="width:67%;background:var(--green)"></div></div>
+                        <span class="mono">67%</span>
+                      </div>
+                    </td>
+                    <td class="mono">1.03</td>
+                    <td class="mono">1.01</td>
+                    <td class="mono">26.4%</td>
+                    <td style="color:var(--text3)">Feb-25</td>
+                    <td><span class="badge badge-ok">ON TRACK</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500;color:var(--text)">TGN-Servicio-A</td>
+                    <td>TGN</td>
+                    <td>
+                      <div class="prog-wrap">
+                        <div class="prog-bar"><div class="prog-fill" style="width:45%;background:var(--amber)"></div></div>
+                        <span class="mono">45%</span>
+                      </div>
+                    </td>
+                    <td class="mono warn">0.97</td>
+                    <td class="mono warn">0.95</td>
+                    <td class="mono">21.2%</td>
+                    <td style="color:var(--text3)">May-25</td>
+                    <td><span class="badge badge-warn">ATENCIÓN</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:500;color:var(--text)">PAE-Mant-002</td>
+                    <td>Pan American</td>
+                    <td>
+                      <div class="prog-wrap">
+                        <div class="prog-bar"><div class="prog-fill" style="width:38%;background:var(--red)"></div></div>
+                        <span class="mono">38%</span>
+                      </div>
+                    </td>
+                    <td class="mono neg">0.82</td>
+                    <td class="mono neg">0.91</td>
+                    <td class="mono neg">14.1%</td>
+                    <td style="color:var(--text3)">Jul-25</td>
+                    <td><span class="badge badge-crit">CRÍTICO</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Alertas Contractuales</div></div>
+            <div class="alert alert-warn" style="margin-bottom:8px">
+              <span class="alert-icon">⚑</span>
+              <div><strong>CT-2024-003 (PAE):</strong> Sin cláusula de ajuste. Riesgo de erosión de margen estimado $45K–$80K. Renegociación urgente.</div>
+            </div>
+            <div class="alert alert-info">
+              <span class="alert-icon">◷</span>
+              <div><strong>CT-2024-002 (TGN):</strong> Vence en 60 días (May-25). Iniciar gestión de renovación.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── COSTOS ─── -->
+        <div class="mod-panel" id="mod-costos">
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Estructura de Costos — YPF-Proy-001</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead>
+                  <tr><th>Ítem</th><th>Presupuestado</th><th>Real Acum.</th><th>Desvío $</th><th>Ejecución %</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Mano de Obra Directa</td><td class="mono">$420,000</td><td class="mono">$398,500</td><td class="mono pos">-$21,500</td><td class="mono">94.9%</td></tr>
+                  <tr><td>Equipos y Maquinaria</td><td class="mono">$285,000</td><td class="mono">$301,200</td><td class="mono neg">+$16,200</td><td class="mono">105.7%</td></tr>
+                  <tr><td>Materiales e Insumos</td><td class="mono">$180,000</td><td class="mono">$167,300</td><td class="mono pos">-$12,700</td><td class="mono">92.9%</td></tr>
+                  <tr><td>Logística y Transporte</td><td class="mono">$95,000</td><td class="mono">$98,400</td><td class="mono neg">+$3,400</td><td class="mono">103.6%</td></tr>
+                  <tr><td>Servicios Terceros</td><td class="mono">$140,000</td><td class="mono">$144,800</td><td class="mono neg">+$4,800</td><td class="mono">103.4%</td></tr>
+                  <tr><td>Costos Indirectos / GG</td><td class="mono">$85,000</td><td class="mono">$82,600</td><td class="mono pos">-$2,400</td><td class="mono">97.2%</td></tr>
+                  <tr style="background:rgba(255,255,255,0.025)">
+                    <td style="font-weight:600;color:var(--text)">TOTAL COSTOS</td>
+                    <td class="mono" style="color:var(--text);font-weight:500">$1,205,000</td>
+                    <td class="mono" style="color:var(--text);font-weight:500">$1,192,800</td>
+                    <td class="mono pos" style="font-weight:500">-$12,200</td>
+                    <td class="mono" style="font-weight:500">99.0%</td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--text3)">Margen Operativo</td>
+                    <td class="mono">$345,000</td>
+                    <td class="mono">$357,200</td>
+                    <td class="mono pos">+$12,200</td>
+                    <td class="mono">26.4%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kpi-grid kpi-grid-3">
+            <div class="kpi ok">
+              <div class="kpi-label">Margen Bruto Real</div>
+              <div class="kpi-val">26.4%</div>
+              <div class="kpi-delta pos">▲ +1.2pp vs ofertado</div>
+            </div>
+            <div class="kpi ok">
+              <div class="kpi-label">Desvío Acumulado</div>
+              <div class="kpi-val">-$12.2K</div>
+              <div class="kpi-delta pos">Favorable</div>
+            </div>
+            <div class="kpi warn">
+              <div class="kpi-label">Mayor Desvío</div>
+              <div class="kpi-val">Equipos</div>
+              <div class="kpi-delta neg">+5.7% sobre presupuesto</div>
+            </div>
+          </div>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠</span>
+            <div><strong>Equipos y Maquinaria:</strong> Sobre presupuesto +$16,200 (+5.7%). Revisar utilización. Evaluar optimización de horometría.</div>
+          </div>
+        </div>
+
+        <!-- ─── EVM ─── -->
+        <div class="mod-panel" id="mod-evm">
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Semáforo EVM — PAE-Mant-002</div></div>
+            <div class="sem-grid">
+              <div class="sem-card">
+                <div class="sem-light crit"></div>
+                <div class="sem-metric">CPI</div>
+                <div class="sem-val" style="color:var(--red)">0.82</div>
+                <div class="sem-desc">Sobrecosto crítico</div>
+              </div>
+              <div class="sem-card">
+                <div class="sem-light warn"></div>
+                <div class="sem-metric">SPI</div>
+                <div class="sem-val" style="color:var(--amber)">0.91</div>
+                <div class="sem-desc">Atraso en cronograma</div>
+              </div>
+              <div class="sem-card">
+                <div class="sem-light warn"></div>
+                <div class="sem-metric">Avance Físico</div>
+                <div class="sem-val">38%</div>
+                <div class="sem-desc">vs 41.7% planificado</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Métricas EVM Detalladas</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead><tr><th>Métrica</th><th>Sigla</th><th>Valor</th><th>Interpretación</th></tr></thead>
+                <tbody>
+                  <tr><td>Planned Value</td><td class="mono">PV</td><td class="mono">$418,000</td><td style="color:var(--text3)">Trabajo planificado al corte</td></tr>
+                  <tr><td>Earned Value</td><td class="mono">EV</td><td class="mono">$380,380</td><td style="color:var(--text3)">Valor real del trabajo ejecutado</td></tr>
+                  <tr><td>Actual Cost</td><td class="mono">AC</td><td class="mono">$463,878</td><td style="color:var(--text3)">Costo real incurrido</td></tr>
+                  <tr><td>Cost Variance</td><td class="mono">CV</td><td class="mono neg">-$83,498</td><td style="color:var(--red)">⚠ Sobrecosto activo</td></tr>
+                  <tr><td>Schedule Variance</td><td class="mono">SV</td><td class="mono warn">-$37,620</td><td style="color:var(--amber)">Detrás del cronograma</td></tr>
+                  <tr><td>Cost Performance Index</td><td class="mono">CPI</td><td class="mono neg">0.82</td><td style="color:var(--red)">Crítico — acción requerida</td></tr>
+                  <tr><td>Schedule Performance Index</td><td class="mono">SPI</td><td class="mono warn">0.91</td><td style="color:var(--amber)">Atención — riesgo plazo</td></tr>
+                  <tr><td>Estimate at Completion</td><td class="mono">EAC</td><td class="mono neg">$1,341,463</td><td style="color:var(--red)">+$241K vs BAC $1.1M</td></tr>
+                  <tr><td>Estimate to Complete</td><td class="mono">ETC</td><td class="mono">$877,585</td><td style="color:var(--text3)">Costo restante proyectado</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="alert alert-crit">
+            <span class="alert-icon">⚠</span>
+            <div><strong>Conclusión Ejecutiva:</strong> PAE-Mant-002 requiere plan correctivo inmediato. Sobrecosto proyectado de $241K sobre BAC. Revisar composición de costos, renegociar alcance o solicitar reconocimiento de adicionales.</div>
+          </div>
+        </div>
+
+        <!-- ─── CONTRATOS ─── -->
+        <div class="mod-panel" id="mod-contratos">
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Cartera Contractual</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead>
+                  <tr><th>ID Contrato</th><th>Cliente</th><th>Monto</th><th>Inicio</th><th>Vencimiento</th><th>Ajuste</th><th>Estado</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="color:var(--text);font-weight:500">CT-2024-001</td>
+                    <td>YPF S.A.</td>
+                    <td class="mono">$1,550,000</td>
+                    <td style="color:var(--text3)">Mar-24</td>
+                    <td style="color:var(--text3)">Feb-25</td>
+                    <td><span class="badge badge-gold">Polinómica</span></td>
+                    <td><span class="badge badge-ok">VIGENTE</span></td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--text);font-weight:500">CT-2024-002</td>
+                    <td>TGN</td>
+                    <td class="mono">$890,000</td>
+                    <td style="color:var(--text3)">Jun-24</td>
+                    <td style="color:var(--amber)">May-25 ⚑</td>
+                    <td><span class="badge badge-info">IPC</span></td>
+                    <td><span class="badge badge-warn">RENOVAR 60d</span></td>
+                  </tr>
+                  <tr>
+                    <td style="color:var(--text);font-weight:500">CT-2024-003</td>
+                    <td>Pan American</td>
+                    <td class="mono">$1,100,000</td>
+                    <td style="color:var(--text3)">Aug-24</td>
+                    <td style="color:var(--text3)">Jul-25</td>
+                    <td><span class="badge badge-crit">Sin ajuste</span></td>
+                    <td><span class="badge badge-crit">RIESGO</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="alert alert-crit">
+            <span class="alert-icon">⚠</span>
+            <div><strong>CT-2024-003 — Riesgo Financiero Alto:</strong> Contrato sin cláusula de ajuste en contexto inflacionario. Riesgo de erosión de margen estimado entre $45K y $80K. Renegociación urgente recomendada.</div>
+          </div>
+          <div class="alert alert-warn">
+            <span class="alert-icon">◷</span>
+            <div><strong>CT-2024-002 — Renovación Próxima:</strong> Vence en 60 días. Iniciar proceso de renovación. Evaluar renegociación de tarifas con ajuste IPC acumulado.</div>
+          </div>
+        </div>
+
+        <!-- ─── CASH FLOW ─── -->
+        <div class="mod-panel" id="mod-cashflow">
+          <div class="kpi-grid kpi-grid-4">
+            <div class="kpi ok">
+              <div class="kpi-label">Saldo Actual</div>
+              <div class="kpi-val">$487K</div>
+              <div class="kpi-delta pos">Posición positiva</div>
+            </div>
+            <div class="kpi crit">
+              <div class="kpi-label">Mes Crítico</div>
+              <div class="kpi-val">Mar-25</div>
+              <div class="kpi-delta neg">Déficit -$82K</div>
+            </div>
+            <div class="kpi warn">
+              <div class="kpi-label">Capital de Trabajo</div>
+              <div class="kpi-val">$220K</div>
+              <div class="kpi-delta neu">Necesidad identificada</div>
+            </div>
+            <div class="kpi ok">
+              <div class="kpi-label">Cobertura Mínimo Op.</div>
+              <div class="kpi-val">2.1x</div>
+              <div class="kpi-delta pos">Sobre umbral</div>
+            </div>
+          </div>
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Proyección Cash Flow Mensual</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead>
+                  <tr><th>Mes</th><th>Ingresos</th><th>Egresos</th><th>Flujo Neto</th><th>Saldo Acum.</th><th>Estado</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mono">Ene-25</td>
+                    <td class="mono">$680,000</td><td class="mono">$540,000</td>
+                    <td class="mono pos">+$140,000</td><td class="mono">$627,000</td>
+                    <td><span class="badge badge-ok">OK</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">Feb-25</td>
+                    <td class="mono">$720,000</td><td class="mono">$610,000</td>
+                    <td class="mono pos">+$110,000</td><td class="mono">$737,000</td>
+                    <td><span class="badge badge-ok">OK</span></td>
+                  </tr>
+                  <tr style="background:rgba(224,82,82,0.04)">
+                    <td class="mono" style="color:var(--red)">Mar-25 ⚠</td>
+                    <td class="mono">$480,000</td><td class="mono">$562,000</td>
+                    <td class="mono neg">-$82,000</td><td class="mono">$655,000</td>
+                    <td><span class="badge badge-crit">DÉFICIT</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">Abr-25</td>
+                    <td class="mono">$750,000</td><td class="mono">$580,000</td>
+                    <td class="mono pos">+$170,000</td><td class="mono">$825,000</td>
+                    <td><span class="badge badge-ok">OK</span></td>
+                  </tr>
+                  <tr>
+                    <td class="mono">May-25</td>
+                    <td class="mono">$690,000</td><td class="mono">$640,000</td>
+                    <td class="mono warn">+$50,000</td><td class="mono">$875,000</td>
+                    <td><span class="badge badge-warn">AJUSTADO</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="alert alert-warn">
+            <span class="alert-icon">⚠</span>
+            <div><strong>Tensión de Caja Mar-25:</strong> Ingresos bajos por brecha de certificaciones. Anticipar cobranza Feb-25 o gestionar línea de crédito por $100K para cubrir gap operativo.</div>
+          </div>
+        </div>
+
+        <!-- ─── PLIEGOS ─── -->
+        <div class="mod-panel" id="mod-pliegos">
+          <div class="alert alert-info">
+            <span class="alert-icon">↑</span>
+            <div><strong>Modo Análisis Documental:</strong> Cargue el pliego técnico-comercial en el chat. El sistema extraerá alcance, riesgos, fechas, penalidades, condiciones de pago y cláusulas críticas automáticamente.</div>
+          </div>
+          <div>
+            <div class="sec-head"><div class="sec-head-label">Checklist Estándar de Evaluación</div></div>
+            <div class="t-wrap">
+              <table class="dt">
+                <thead><tr><th>#</th><th>Ítem de Revisión</th><th>Categoría</th><th>Prioridad</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">01</td><td>Alcance técnico y exclusiones explícitas</td><td>Técnico</td><td><span class="badge badge-crit">CRÍTICO</span></td></tr>
+                  <tr><td class="mono">02</td><td>Condiciones de pago e hitos de certificación</td><td>Comercial</td><td><span class="badge badge-crit">CRÍTICO</span></td></tr>
+                  <tr><td class="mono">03</td><td>Penalidades por incumplimiento y mora</td><td>Contractual</td><td><span class="badge badge-crit">CRÍTICO</span></td></tr>
+                  <tr><td class="mono">04</td><td>Cláusula de ajuste / polinómica de actualización</td><td>Financiero</td><td><span class="badge badge-crit">CRÍTICO</span></td></tr>
+                  <tr><td class="mono">05</td><td>Garantías requeridas (ETP, fiel cumplimiento)</td><td>Contractual</td><td><span class="badge badge-warn">ALTO</span></td></tr>
+                  <tr><td class="mono">06</td><td>Seguros (RC, ART, Todo Riesgo Construcción)</td><td>Legal</td><td><span class="badge badge-warn">ALTO</span></td></tr>
+                  <tr><td class="mono">07</td><td>Habilitaciones y certificaciones técnicas</td><td>Técnico</td><td><span class="badge badge-warn">ALTO</span></td></tr>
+                  <tr><td class="mono">08</td><td>Fechas límite de presentación y validez oferta</td><td>Administrativo</td><td><span class="badge badge-info">MEDIO</span></td></tr>
+                  <tr><td class="mono">09</td><td>Requisitos de personal y habilitaciones</td><td>RRHH</td><td><span class="badge badge-info">MEDIO</span></td></tr>
+                  <tr><td class="mono">10</td><td>Documentación técnica y planos adjuntos</td><td>Técnico</td><td><span class="badge badge-info">MEDIO</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /data-panel -->
+
+      <!-- ─── AI CHAT RAIL ─── -->
+      <div class="chat-rail">
+        <div class="chat-top">
+          <div class="chat-top-left">
+            <div class="chat-title">THOTH AI — Asistente</div>
+            <div class="chat-ctx" id="chat-ctx-label">Contexto: Dashboard · Cartera Completa</div>
+          </div>
+          <div class="model-tag" id="model-tag">claude-sonnet</div>
+        </div>
+
+        <div class="chat-msgs" id="chat-msgs">
+          <div class="msg-ai">
+            <div class="ai-msg-tag">THOTH AI — SISTEMA ACTIVO</div>
+            Sistema inicializado. Cartera activa: <strong>3 proyectos · $3.54M bajo gestión</strong>.<br><br>
+            ⚠ <span class="neg">PAE-Mant-002 requiere acción correctiva urgente.</span> CPI 0.82 · EAC $1.34M · Sobrecosto proyectado +$241K.<br><br>
+            Formule su consulta o seleccione una acción rápida.
+          </div>
+        </div>
+
+        <div class="qp-area" id="qp-area">
+          <div class="qp" onclick="sendQ(this.textContent)">Analizar PAE-Mant-002</div>
+          <div class="qp" onclick="sendQ(this.textContent)">EVM completo cartera</div>
+          <div class="qp" onclick="sendQ(this.textContent)">Riesgo caja Mar-25</div>
+          <div class="qp" onclick="sendQ(this.textContent)">Contratos vencimiento</div>
+          <div class="qp" onclick="sendQ(this.textContent)">Reporte ejecutivo</div>
+        </div>
+
+        <div class="chat-input-wrap">
+          <textarea class="chat-in" id="user-in" rows="1" placeholder="Consulta técnica, EVM, costos, pliegos, cash flow..."
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();onSend()}"
+            oninput="autoResize(this)"></textarea>
+          <button class="send-btn" id="send-btn" onclick="onSend()">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </main>
+</div>
+
+<script>
+// ─── SYSTEM PROMPT ───
+const THOTH_SYSTEM = `Eres THOTH AI, sistema corporativo premium de gestión para Oil & Gas, energía, construcción e industria pesada.
+
+IDENTIDAD: Software enterprise. No eres un chatbot. Eres un ERP inteligente con IA integrada.
+
+ROLES ACTIVOS: Analista de Costos · Especialista en Pliegos y Licitaciones · Especialista en Contratos · Controller EVM · Especialista en Planeamiento · Analista Financiero / Cash Flow · Asistente Ejecutivo Corporativo.
+
+REGLAS ABSOLUTAS:
+- Respuestas ejecutivas y técnicas. Máximo 250 palabras salvo análisis complejos con tablas.
+- Usar tablas markdown cuando aporten valor.
+- Priorizar: métricas → alertas → recomendaciones accionables.
+- Nunca inventar datos. Si falta información, solicitarla concisamente.
+- Detectar riesgos e inconsistencias automáticamente.
+- Destacar alertas con ⚠.
+- Confirmar hallazgos positivos con ✓.
+- Lenguaje técnico-corporativo. Sin texto ornamental ni explicaciones redundantes.
+
+FORMATO DE RESPUESTA:
+1. Resumen Ejecutivo (2-3 líneas)
+2. Tabla si corresponde (formato | col | col |)
+3. ⚠ Riesgos / Alertas críticas
+4. ✓ Recomendaciones accionables (máx 3)
+
+CONTEXTO OPERATIVO ACTUAL:
+Proyectos activos:
+- YPF-Proy-001: CPI 1.03 · SPI 1.01 · Avance 67% · Margen 26.4% · BAC $1.55M → ON TRACK
+- TGN-Servicio-A: CPI 0.97 · SPI 0.95 · Avance 45% · Margen 21.2% · BAC $0.89M → ATENCIÓN
+- PAE-Mant-002: CPI 0.82 · SPI 0.91 · Avance 38% · Margen 14.1% · BAC $1.1M · EAC $1.34M → CRÍTICO
+
+Contratos:
+- CT-2024-001 (YPF): $1.55M · Vence Feb-25 · Polinómica · VIGENTE
+- CT-2024-002 (TGN): $890K · Vence May-25 · IPC · RENOVAR 60d
+- CT-2024-003 (PAE): $1.1M · Vence Jul-25 · SIN AJUSTE → RIESGO $45K-$80K
+
+Cash Flow:
+- Saldo actual: $487K · Déficit proyectado Mar-25: -$82K · Capital trabajo necesario: $220K
+
+Costos YPF-Proy-001:
+- Presupuesto $1.205M · Real acum. $1.193M · Desvío favorable -$12.2K
+- Desviación equipos: +$16.2K (+5.7%) — mayor riesgo activo
+
+CAPACIDADES DEL SISTEMA:
+- Análisis de pliegos técnicos y comerciales.
+- Construcción y comparación de estructuras de costos.
+- Cálculo EVM completo (PV/EV/AC/CPI/SPI/CV/SV/EAC/ETC).
+- Proyecciones financieras y análisis de cash flow.
+- Análisis contractual y detección de riesgos.
+- Pricing dinámico con ajuste por polinómicas.
+- Generación de reportes ejecutivos.`;
+
+// ─── STATE ───
+let history = [];
+let loading = false;
+let currentMod = 'dashboard';
+
+const modCfg = {
+  dashboard: {
+    title: 'Dashboard Ejecutivo', sub: 'Cartera Activa · 3 Proyectos',
+    ctx: 'Contexto: Dashboard · Cartera Completa',
+    qp: ['Analizar PAE-Mant-002', 'EVM completo cartera', 'Riesgo caja Mar-25', 'Contratos vencimiento', 'Reporte ejecutivo']
+  },
+  costos: {
+    title: 'Análisis de Costos', sub: 'Estructuras · Márgenes · Desvíos',
+    ctx: 'Contexto: Control de Costos',
+    qp: ['Desvíos por ítem YPF', 'Proyectar margen final', 'Optimizar costo equipos', 'Pricing dinámico', 'Comparar ofertado vs real']
+  },
+  evm: {
+    title: 'Control EVM', sub: 'Earned Value Management',
+    ctx: 'Contexto: EVM · Performance Financiero',
+    qp: ['EAC completo PAE-002', 'Plan correctivo CPI<1', 'Comparar CPI cartera', 'SPI y riesgo de plazo', 'Semáforo ejecutivo']
+  },
+  contratos: {
+    title: 'Gestión Contractual', sub: 'Seguimiento · Riesgos · Renovaciones',
+    ctx: 'Contexto: Cartera Contractual',
+    qp: ['Riesgos CT-2024-003', 'Cláusulas críticas PAE', 'Redeterminación precios', 'Vencimientos 90 días', 'Polinómica TGN']
+  },
+  cashflow: {
+    title: 'Cash Flow / Proyección', sub: 'Flujo · Capital · Riesgos Financieros',
+    ctx: 'Contexto: Proyección Financiera',
+    qp: ['Analizar déficit Mar-25', 'Capital trabajo necesario', 'Opciones financiamiento', 'Proyección Q2 2025', 'Liquidez crítica']
+  },
+  pliegos: {
+    title: 'Análisis de Pliegos', sub: 'Licitaciones · Requisitos · Riesgos',
+    ctx: 'Contexto: Análisis Documental',
+    qp: ['Checklist básico pliego', 'Detectar riesgos contractuales', 'Condiciones pago típicas', 'Penalidades estándar', 'Garantías requeridas']
+  }
+};
+
+// ─── MODULE SWITCH ───
+function switchMod(mod, el) {
+  document.querySelectorAll('.top-nav-item').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.mod-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('mod-' + mod).classList.add('active');
+  currentMod = mod;
+  const c = modCfg[mod];
+  document.getElementById('mod-title-text').textContent = c.title;
+  document.getElementById('mod-subtitle').textContent = c.sub;
+  document.getElementById('chat-ctx-label').textContent = c.ctx;
+  const qa = document.getElementById('qp-area');
+  qa.innerHTML = c.qp.map(q => `<div class="qp" onclick="sendQ(this.textContent)">${q}</div>`).join('');
+}
+
+// ─── PROJECT LOAD ───
+function loadProj(id, el) {
+  document.querySelectorAll('.sb-item').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  sendQ(`Estado completo y KPIs del proyecto ${id}. Incluir EVM, costos reales, riesgos activos, alerta de margen y próximos pasos.`);
+}
+
+// ─── AUTO RESIZE ───
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+// ─── SEND ───
+function sendQ(text) {
+  const inp = document.getElementById('user-in');
+  inp.value = text;
+  onSend();
+}
+
+function onSend() {
+  const inp = document.getElementById('user-in');
+  const text = inp.value.trim();
+  if (!text || loading) return;
+  inp.value = '';
+  inp.style.height = 'auto';
+  appendUser(text);
+  callAI(text);
+}
+
+// ─── DOM HELPERS ───
+function appendUser(text) {
+  const msgs = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = 'msg-user';
+  d.textContent = text;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = 'typing'; d.id = 'typing-indicator';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+function appendAI(html) {
+  const msgs = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = 'msg-ai';
+  d.innerHTML = `<div class="ai-msg-tag">THOTH AI — ${modCfg[currentMod].title.toUpperCase()}</div>${html}`;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ─── FORMAT RESPONSE ───
+function formatResponse(text) {
+  let html = text;
+
+  // Tables
+  const lines = html.split('\n');
+  let result = [];
+  let inTable = false;
+  let tableLines = [];
+
+  for (let line of lines) {
+    if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
+      if (!inTable) { inTable = true; tableLines = []; }
+      tableLines.push(line);
+    } else {
+      if (inTable) {
+        result.push(renderTable(tableLines));
+        inTable = false; tableLines = [];
+      }
+      result.push(line);
+    }
+  }
+  if (inTable) result.push(renderTable(tableLines));
+  html = result.join('\n');
+
+  // Inline formatting
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/⚠([^\n]+)/g, '<span class="warn">⚠$1</span>');
+  html = html.replace(/✓([^\n]+)/g, '<span class="pos">✓$1</span>');
+  html = html.replace(/(\-\$[\d,.]+K?)/g, '<span class="neg">$1</span>');
+  html = html.replace(/(\+\$[\d,.]+K?)/g, '<span class="pos">$1</span>');
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
+function renderTable(lines) {
+  const rows = lines.filter(l => !l.match(/^\|[-:\s|]+\|$/));
+  if (rows.length < 2) return lines.join('\n');
+  let t = '<table><thead><tr>';
+  const headers = rows[0].split('|').filter(c => c.trim());
+  headers.forEach(h => { t += `<th>${h.trim()}</th>`; });
+  t += '</tr></thead><tbody>';
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].split('|').filter(c => c.trim());
+    t += '<tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr>';
+  }
+  t += '</tbody></table>';
+  return t;
+}
+
+// ─── API CALL ───
+async function callAI(userMsg) {
+  if (loading) return;
+  loading = true;
+  document.getElementById('send-btn').disabled = true;
+  showTyping();
+
+  const ctxPrefix = `[Módulo: ${modCfg[currentMod].title}] `;
+  history.push({ role: 'user', content: ctxPrefix + userMsg });
+
+  // Keep history lean — last 10 turns
+  const trimmed = history.slice(-10);
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: THOTH_SYSTEM,
+        messages: trimmed
+      })
+    });
+
+    const data = await res.json();
+    const reply = (data.content || []).map(b => b.text || '').join('') || '⚠ Error al procesar respuesta.';
+    history.push({ role: 'assistant', content: reply });
+    removeTyping();
+    appendAI(formatResponse(reply));
+
+  } catch (err) {
+    removeTyping();
+    appendAI('<span class="neg">⚠ Error de conexión. Verificar API key y red.</span>');
+  }
+
+  loading = false;
+  document.getElementById('send-btn').disabled = false;
+}
+</script>
+</body>
+</html>
