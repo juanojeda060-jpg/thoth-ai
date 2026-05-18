@@ -1,238 +1,721 @@
-/* ===== CARDS SIN ICONOS ===== */
-
-.workflow{
-  margin-top:24px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:16px;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THOTH AI — Contract Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ml-yellow:#ffe600;--ml-blue:#3483fa;--ml-blue-soft:#e8f1ff;--ml-dark:#333333;
+  --orange:#ff6b00;--orange2:#ff8a2a;--bg:#f7f4ef;--paper:#fffaf4;--panel:#fff;--ink:#171717;
+  --muted:#667085;--soft:#9ca3af;--line:rgba(23,23,23,.11);--ok:#059669;--warn:#f59e0b;--danger:#dc2626;
+  --shadow:0 18px 55px rgba(23,23,23,.10);--mono:'JetBrains Mono',monospace;--body:'Inter',sans-serif
+}
+body.dark{--bg:#080808;--paper:#0f0f10;--panel:#151516;--ink:#f6f3ed;--muted:#a1a1aa;--soft:#71717a;--line:rgba(255,255,255,.10);--shadow:0 28px 70px rgba(0,0,0,.45)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;overflow:hidden;font-family:var(--body);color:var(--ink);background:radial-gradient(circle at 76% 3%,rgba(255,107,0,.18),transparent 26%),linear-gradient(115deg,rgba(255,107,0,.06),transparent 35%),var(--bg)}
+button,input,select,textarea{font-family:inherit}i{font-style:normal}.app{height:100vh;display:grid;grid-template-columns:92px minmax(0,1fr);transition:grid-template-columns .22s ease}.app.sidebar-open{grid-template-columns:270px minmax(0,1fr)}
+.rail{padding:18px 14px 120px;border-right:1px solid var(--line);background:rgba(255,255,255,.58);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;z-index:120;overflow-y:auto;overflow-x:hidden;transition:.22s ease;height:100vh}body.dark .rail{background:rgba(15,15,16,.78)}.app.sidebar-open .rail{align-items:stretch;padding:18px 16px}
+.railHead{width:100%;display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:8px}.app.sidebar-open .railHead{justify-content:flex-start}.mark{min-width:58px;width:58px;height:58px;background:var(--ink);color:var(--panel);display:grid;place-items:center;border-radius:20px 20px 6px 20px;font-weight:900;font-size:25px;position:relative}.mark:after{content:"";position:absolute;right:-5px;bottom:-5px;width:18px;height:18px;background:var(--orange);border:4px solid var(--bg)}
+.markWrap{
+position:relative;
+display:flex;
+align-items:flex-start;
 }
 
-.workflow button{
+.insideClose{
+position:absolute;
+top:-6px;
+right:-10px;
+width:28px;
+height:28px;
+border:none;
+border-radius:50%;
+background:var(--orange);
+color:#fff;
+font-size:14px;
+font-weight:900;
+cursor:pointer;
+display:grid;
+place-items:center;
+box-shadow:0 6px 14px rgba(255,107,0,.28);
+transition:.18s ease;
+z-index:10;
+}
+
+.insideClose:hover{
+transform:scale(1.06);
+background:#ff7d1f;
+}
+.brandSide{display:none}.app.sidebar-open .brandSide{display:block}.brandSide b{display:block;font-size:18px;letter-spacing:.08em}.brandSide small{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.14em;margin-top:3px}.sideToggle{
+width:44px;
+height:44px;
+border:1px solid rgba(0,0,0,.08);
+background:linear-gradient(145deg,#ffffff,#f2ece6);
+color:var(--ink);
+border-radius:14px;
+cursor:pointer;
+font-weight:900;
+margin-left:auto;
+display:none;
+transition:.18s ease;
+box-shadow:0 6px 16px rgba(0,0,0,.06)
+}
+.sideToggle:hover{
+transform:translateX(-2px);
+background:linear-gradient(145deg,#fff,#f7e5d6);
+color:var(--orange);
+}
+.closeArrow{
+font-size:18px;
+line-height:1;
+}.app.sidebar-open .sideToggle{display:grid;place-items:center}.sideToggleMini{width:56px;height:44px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:16px;cursor:pointer;font-weight:900}.app.sidebar-open .sideToggleMini{display:none}
+.iconBtn{width:56px;height:56px;border:1px solid transparent;background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;font-size:20px;border-radius:18px;transition:.18s;position:relative}.iconBtn:hover,.iconBtn.active{color:var(--orange);background:rgba(255,107,0,.11);border-color:var(--line);transform:translateY(-1px)}.iconBtn .ico{width:24px;text-align:center;flex:0 0 24px}.iconBtn span{position:absolute;left:68px;background:var(--ink);color:var(--panel);font-size:12px;font-weight:800;white-space:nowrap;padding:8px 10px;border-radius:10px;opacity:0;pointer-events:none;transform:translateX(-8px);transition:.18s;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,.18)}.iconBtn:hover span{opacity:1;transform:translateX(0)}.app.sidebar-open .iconBtn{width:100%;height:48px;justify-content:flex-start;padding:0 14px;font-size:18px;border-radius:14px}.app.sidebar-open .iconBtn span{position:static;opacity:1;transform:none;background:transparent;color:inherit;box-shadow:none;padding:0;font-size:14px;pointer-events:auto}.railSection{display:none;width:100%;font-family:var(--mono);font-size:10px;color:var(--soft);letter-spacing:.16em;text-transform:uppercase;margin:12px 0 2px}.app.sidebar-open .railSection{display:block}
+.themeToggle{
+  width:96px;
+  height:48px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  padding:0;
+}
+
+.themeTrack{
+  width:92px;
+  height:44px;
+  border-radius:999px;
   position:relative;
   overflow:hidden;
-
-  text-align:left;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,107,0,.05),
-      rgba(255,255,255,.015)
-    );
-
-  color:var(--ink);
-
-  padding:26px;
-
-  min-height:150px;
-
-  cursor:pointer;
-
-  border-radius:24px;
-
-  transition:
-    transform .22s ease,
-    border-color .22s ease,
-    background .22s ease,
-    box-shadow .22s ease;
+  background:linear-gradient(145deg,#f4f4f4,#d9d9d9);
+  border:1px solid rgba(0,0,0,.12);
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.85),
+    inset 0 -4px 8px rgba(0,0,0,.16),
+    0 8px 18px rgba(0,0,0,.14);
+  transition:.28s ease;
 }
 
-.workflow button::before{
+.themeTrack:before{
+  content:"☀";
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:21px;
+  color:#facc15;
+  text-shadow:0 1px 2px rgba(255,255,255,.8);
+  transition:.22s ease;
+}
+
+.themeTrack:after{
+  content:"☾";
+  position:absolute;
+  right:19px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:22px;
+  color:#facc15;
+  opacity:0;
+  transition:.22s ease;
+}
+
+.themeKnob{
+  position:absolute;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  top:2px;
+  left:51px;
+  background:linear-gradient(145deg,#ffffff,#eeeeee);
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.26),
+    inset 0 2px 3px rgba(255,255,255,.9),
+    inset 0 -2px 4px rgba(0,0,0,.08);
+  transition:.28s cubic-bezier(.77,0,.18,1);
+  z-index:3;
+}
+
+.themeKnob:after{
   content:"";
   position:absolute;
-  inset:0;
-
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(255,107,0,.14),
-      transparent 42%
-    );
-
-  opacity:.8;
+  inset:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.45);
 }
 
-.workflow button:hover{
-  transform:translateY(-4px);
+.themeTrack .sun,
+.themeTrack .moon{
+  display:none;
+}
 
-  border-color:rgba(255,107,0,.24);
-
+body.dark .themeTrack{
+  background:linear-gradient(145deg,#4b4b4b,#242424);
+  border-color:rgba(255,255,255,.16);
   box-shadow:
-    0 18px 40px rgba(255,107,0,.08);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,107,0,.10),
-      rgba(255,255,255,.02)
-    );
+    inset 0 3px 7px rgba(255,255,255,.10),
+    inset 0 -4px 9px rgba(0,0,0,.45),
+    0 9px 20px rgba(0,0,0,.28);
 }
 
-/* ELIMINA ICONOS */
-.workflow i{
+body.dark .themeTrack:before{
+  opacity:0;
+}
+
+body.dark .themeTrack:after{
+  opacity:1;
+}
+
+body.dark .themeKnob{
+  left:3px;
+  background:linear-gradient(145deg,#ffffff,#e9e9e9);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.38),
+    inset 0 2px 3px rgba(255,255,255,.9),
+    inset 0 -2px 4px rgba(0,0,0,.10);
+}
+.railBottom{margin-top:24px;display:grid;gap:10px;width:100%;padding-bottom:40px}.app.sidebar-open .themeToggle{justify-self:start;margin-left:6px}
+
+/* Sidebar cerrado: solo botón hamburguesa. Sidebar abierto: menú completo */
+.app:not(.sidebar-open) .mark,
+.app:not(.sidebar-open) .markWrap,
+.app:not(.sidebar-open) .insideClose,
+.app:not(.sidebar-open) .brandSide,
+.app:not(.sidebar-open) .iconBtn,
+.app:not(.sidebar-open) .themeToggle,
+.app:not(.sidebar-open) .railSection{
   display:none!important;
 }
 
-.workflow b{
-  position:relative;
-  z-index:2;
-
-  display:block;
-
-  font-size:18px;
-  font-weight:800;
-
-  margin-bottom:10px;
-
-  color:#fff;
-}
-
-.workflow small{
-  position:relative;
-  z-index:2;
-
-  display:block;
-
-  color:var(--muted);
-
-  font-size:15px;
-  line-height:1.55;
-}
-
-
-/* ===== MÉTRICAS CENTRADAS ===== */
-
-.metric{
-  display:flex;
-  flex-direction:column;
+.app:not(.sidebar-open) .rail{
+  justify-content:flex-start;
   align-items:center;
-  justify-content:center;
-
-  text-align:center;
+  padding-top:22px;
 }
 
-.metric label{
-  text-align:center;
-}
-
-.metric b{
-  text-align:center;
+.app:not(.sidebar-open) .railHead{
+  margin-bottom:0;
 }
 
 
-/* ===== SWITCH MINIMAL SIN ICONOS ===== */
+.sideCloseClean{
+  width:58px;
+  height:58px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  color:var(--orange);
+  border-radius:20px;
+  cursor:pointer;
+  font-size:22px;
+  font-weight:900;
+  display:grid;
+  place-items:center;
+  box-shadow:var(--shadow);
+  transition:.18s ease;
+}
+.sideCloseClean:hover{
+  transform:translateX(-2px);
+  background:rgba(255,107,0,.10);
+}
+.app:not(.sidebar-open) .sideCloseClean{
+  display:none!important;
+}
+.app.sidebar-open .sideToggleMini{
+  display:none!important;
+}
+.app:not(.sidebar-open) .sideToggleMini{
+  display:grid!important;
+  place-items:center;
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  color:var(--ink);
+  box-shadow:var(--shadow);
+  font-size:22px;
+}
 
-.globalThemeToggle{
+.app.sidebar-open .sideToggleMini{
+  display:none!important;
+}
+
+
+.workspace{display:grid;grid-template-rows:auto 1fr;min-width:0;position:relative;z-index:1;height:100vh;overflow:auto;padding-bottom:120px}.header{
+  padding:18px 28px 16px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:22px;
+  align-items:start;
+  background:
+    linear-gradient(120deg,rgba(255,107,0,.12),rgba(255,138,42,.05) 38%,transparent 72%),
+    var(--paper);
+}
+.eyebrow{font-family:var(--mono);color:var(--soft);text-transform:uppercase;letter-spacing:.16em;font-size:11px}.title{font-size:38px;line-height:1;letter-spacing:-.055em;margin-top:8px;font-weight:900}.subtitle{margin-top:10px;color:var(--muted);max-width:780px;line-height:1.45}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:flex-end;
+  align-items:center;
+}
+.btn{
+  border:0;
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  padding:9px 11px;
+  border-radius:7px;
+  font-weight:700;
+  box-shadow:none;
+  transition:.16s;
+  font-size:14px;
+  white-space:nowrap;
+}
+.btn:hover{
+  background:rgba(52,131,250,.10);
+  color:var(--ml-blue);
+  transform:none;
+}
+.btn.primary{
+  background:var(--ml-blue);
+  color:white;
+  border:0;
+  padding:10px 14px;
+  border-radius:8px;
+}
+.btn.primary:hover{
+  background:#2968c8;
+  color:white;
+}
+.btn.warn{
+  color:var(--orange);
+  background:rgba(255,107,0,.10);
+  border:1px solid rgba(255,107,0,.18);
+  padding:9px 13px;
+}
+.btn.warn:hover{
+  background:rgba(255,107,0,.16);
+  color:var(--orange);
+}
+.stage{overflow:auto;padding:26px 28px 90px}.stage::-webkit-scrollbar,.chatBody::-webkit-scrollbar{width:7px}.stage::-webkit-scrollbar-thumb,.chatBody::-webkit-scrollbar-thumb{background:rgba(255,107,0,.35);border-radius:99px}.panel{display:none;animation:fade .2s}.panel.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.heroGrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:20px}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;min-height:270px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:220px;height:220px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
+.cardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px;position:relative}.cardHead h3{text-transform:uppercase;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--muted)}
+.bigMetric{font-size:74px;line-height:.9;letter-spacing:-.08em;font-weight:950;margin-top:22px}.bigMetric small{font-size:16px;letter-spacing:0;color:var(--muted);margin-left:8px}
+.metricStrip{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--paper)}.metric{padding:16px;border-right:1px solid var(--line);text-align:center}.metric:last-child{border-right:0}.metric label{display:block;color:var(--muted);font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:8px;font-size:22px}
+.statusPill{font-family:var(--mono);font-size:11px;border:1px solid;padding:6px 9px;border-radius:99px;font-weight:800}.ok{color:var(--ok);background:rgba(15,159,110,.10);border-color:rgba(15,159,110,.25)}.pending{color:var(--warn);background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.25)}.danger{color:var(--danger);background:rgba(220,38,38,.10);border-color:rgba(220,38,38,.25)}
+.warningBanner{margin-top:20px;border:1px solid rgba(255,107,0,.26);background:rgba(255,107,0,.10);padding:18px 20px;display:flex;justify-content:space-between;gap:18px;align-items:center;border-radius:18px 4px 18px 18px}.warningBanner b{color:var(--orange)}
+.orbit{width:240px;height:240px;margin:8px auto 0;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(255,107,0,.15),transparent 60%)}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%}.orbit:before{inset:28px}.orbit:after{inset:58px}.orbitCore{width:112px;height:112px;border-radius:22px;background:var(--orange);color:white;display:grid;place-items:center;text-align:center;font-weight:950;transform:rotate(-8deg);box-shadow:0 22px 45px rgba(255,107,0,.26)}.orbitCore span{display:block;transform:rotate(8deg);font-size:30px}
+.workflow{margin-top:22px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.workflow button{text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:18px;min-height:122px;cursor:pointer;border-radius:18px 18px 18px 3px;transition:.18s}.workflow button:nth-child(even){border-radius:18px 3px 18px 18px}.workflow button:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.45);background:rgba(255,107,0,.10)}.workflow i{font-style:normal;font-size:28px;display:block;margin-bottom:12px}.workflow small{display:block;margin-top:6px;color:var(--muted);line-height:1.35}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px}.list{display:grid;gap:12px}.rowCard{border:1px solid var(--line);background:var(--panel);padding:16px;display:grid;grid-template-columns:130px 1fr 120px 120px auto;gap:14px;align-items:center;border-radius:18px 4px 18px 18px;transition:.18s}.rowCard:nth-child(even){border-radius:4px 18px 18px 18px}.rowCard:hover{transform:translateX(3px);border-color:rgba(255,107,0,.38)}.meta{color:var(--muted);font-size:13px}.mono{font-family:var(--mono)}
+.uploadDrop{border:1px dashed rgba(255,107,0,.36);background:rgba(255,107,0,.10);padding:22px;border-radius:22px 22px 4px 22px}.uploadDrop label{display:block;cursor:pointer;font-weight:900;font-size:18px}.uploadDrop input{display:none}.fileList{margin-top:14px;display:grid;gap:10px}.fileItem{display:flex;justify-content:space-between;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:13px;border-radius:12px}
+.formGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.field label{display:block;color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700}.field input:focus,.field select:focus{border-color:rgba(255,107,0,.5);box-shadow:0 0 0 4px rgba(255,107,0,.10)}
+.result{background:var(--ink);color:var(--panel);padding:22px;border-radius:22px 22px 4px 22px;margin-top:14px}body.dark .result{background:#f6f3ed;color:#0f0f10}.result small{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;opacity:.68}.result b{display:block;font-size:42px;letter-spacing:-.04em;margin-top:8px}.formula{font-family:var(--mono);color:var(--muted);line-height:1.7;padding:18px;border:1px solid var(--line);background:var(--paper);margin-top:18px;border-radius:16px}.tableLite{width:100%;border-collapse:collapse}.tableLite th{text-align:left;color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;padding:12px;border-bottom:1px solid var(--line)}.tableLite td{padding:14px 12px;border-bottom:1px solid var(--line)}
+.alertItem{background:var(--panel);border:1px solid var(--line);padding:18px 20px;border-left:4px solid var(--orange);display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:12px;border-radius:0 12px 12px 0}
+.helpFab{position:fixed;right:28px;bottom:26px;z-index:140;border:0;background:var(--orange);color:#fff;width:62px;height:62px;border-radius:22px 22px 6px 22px;box-shadow:0 22px 42px rgba(255,107,0,.32);cursor:pointer;font-size:27px}.helpFab.is-open{background:var(--ink);transform:rotate(45deg)}.helpFab.is-open small{transform:rotate(-45deg)}.helpFab small{position:absolute;right:74px;top:10px;white-space:nowrap;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:12px;font-weight:900;box-shadow:var(--shadow)}
+.assistant{position:fixed;right:28px;bottom:98px;width:410px;height:min(630px,calc(100vh - 130px));background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);z-index:130;display:none;flex-direction:column;border-radius:26px 26px 6px 26px;overflow:hidden}.assistant.open{display:flex}.chatHead{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}.chatHead h3{font-size:16px}.chatHead p{color:var(--muted);font-size:13px;margin-top:4px}.close{width:36px;height:36px;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;border-radius:12px;font-weight:900}.chatBody{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.msg{padding:13px 14px;border:1px solid var(--line);border-radius:16px 16px 16px 4px;line-height:1.45;font-size:13px;background:var(--paper)}.msg.user{align-self:flex-end;border-color:rgba(255,107,0,.30);background:rgba(255,107,0,.10);border-radius:16px 16px 4px 16px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 12px}.quick button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px;cursor:pointer;font-weight:800}.chatInput{border-top:1px solid var(--line);padding:14px;display:flex;gap:10px}.chatInput textarea{flex:1;resize:none;min-height:44px;max-height:110px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:12px;outline:none}.send{width:48px;border:0;background:var(--orange);color:white;cursor:pointer;border-radius:14px 14px 4px 14px;font-size:20px}.toastBox{position:fixed;right:28px;top:24px;z-index:100;display:grid;gap:10px}.toast{background:var(--panel);border:1px solid rgba(255,107,0,.32);box-shadow:var(--shadow);padding:12px 14px;border-radius:12px;font-weight:800}
+@media(max-width:1100px){.app{grid-template-columns:76px 1fr}.rail{padding:14px 8px}.workflow{grid-template-columns:repeat(2,1fr)}.heroGrid,.split{grid-template-columns:1fr}.metricStrip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){body{overflow:auto}.app{height:auto;min-height:100vh;grid-template-columns:1fr}.rail{display:none}.header{grid-template-columns:1fr}.actions{justify-content:flex-start}.stage{padding:20px}.title{font-size:32px}.workflow{grid-template-columns:1fr}.metricStrip,.formGrid{grid-template-columns:1fr}.rowCard{grid-template-columns:1fr}.assistant{right:12px;bottom:88px;width:calc(100vw - 24px)}.helpFab{right:16px;bottom:16px}}
+
+/* Limpieza solicitada: menú lateral sin íconos y acciones superiores reducidas */
+.app.sidebar-open .iconBtn{
+  justify-content:flex-start;
+  padding-left:18px;
+}
+.app.sidebar-open .iconBtn span{
+  font-size:15px;
+  font-weight:800;
+}
+.app.sidebar-open .iconBtn.active{
+  background:rgba(255,107,0,.12);
+  border-color:rgba(255,107,0,.22);
+  color:var(--orange);
+}
+.app:not(.sidebar-open) .uploadOnly{
+  display:none!important;
+}
+.headerTheme{
   position:fixed!important;
   top:24px!important;
   right:28px!important;
+  z-index:300!important;
+  min-width:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  pointer-events:auto!important;
+}
+.headerTheme .themeToggle{
+  width:96px!important;
+  height:48px!important;
+}
+.headerTheme .themeTrack{
+  width:92px!important;
+  height:44px!important;
+}
+.headerTheme .themeKnob{
+  width:38px!important;
+  height:38px!important;
+  left:51px!important;
+  top:2px!important;
+}
+body.dark .headerTheme .themeKnob{
+  left:3px!important;
+}
 
-  width:86px!important;
-  height:42px!important;
 
+/* Switch fijo arriba a la derecha: no depende del menú lateral */
+.headerTheme{
+  position:fixed!important;
+  top:24px!important;
+  right:28px!important;
+  z-index:300!important;
+  min-width:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  pointer-events:auto!important;
+}
+
+.headerTheme .themeToggle{
+  width:96px!important;
+  height:48px!important;
+}
+
+.headerTheme .themeTrack{
+  width:92px!important;
+  height:44px!important;
+}
+
+.headerTheme .themeKnob{
+  width:38px!important;
+  height:38px!important;
+  left:51px!important;
+  top:2px!important;
+}
+
+body.dark .headerTheme .themeKnob{
+  left:3px!important;
+}
+
+/* Evita que el header tape el switch */
+.header{
+  padding-right:130px!important;
+}
+
+
+
+/* SWITCH PREMIUM COMPACTO */
+.globalThemeToggle{
+  position:fixed!important;
+  top:22px!important;
+  right:24px!important;
+  z-index:99999!important;
+  width:78px!important;
+  height:40px!important;
   border:0!important;
   background:transparent!important;
-
   cursor:pointer!important;
-
-  z-index:99999!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
 }
 
 .globalThemeToggle .themeTrack{
   position:relative!important;
-
-  width:86px!important;
-  height:42px!important;
-
+  width:76px!important;
+  height:38px!important;
   border-radius:999px!important;
-
-  overflow:hidden!important;
-
-  background:
-    linear-gradient(
-      145deg,
-      #4b4b4b,
-      #1f1f1f
-    )!important;
-
-  border:1px solid rgba(255,255,255,.08)!important;
-
-  box-shadow:
-    inset 0 2px 5px rgba(255,255,255,.08),
-    inset 0 -3px 6px rgba(0,0,0,.45),
-    0 8px 20px rgba(0,0,0,.35)!important;
+  overflow:visible!important;
+  background:linear-gradient(145deg,#e8e8e8,#d0d0d0)!important;
+  border:1px solid rgba(0,0,0,.10)!important;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.10)!important;
 }
 
-/* ELIMINA ICONOS */
-.globalThemeToggle .themeIcon{
-  display:none!important;
-}
-
+/* knob — siempre blanco, se mueve */
 .globalThemeToggle .themeKnob{
   position:absolute!important;
-
-  top:4px!important;
-  left:46px!important;
-
-  width:34px!important;
-  height:34px!important;
-
+  top:3px!important;
+  left:40px!important;
+  width:30px!important;
+  height:30px!important;
   border-radius:50%!important;
+  background:#ffffff!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.22)!important;
+  transition:.28s cubic-bezier(.77,0,.18,1)!important;
+  z-index:3!important;
+}
 
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #dcdcdc
-    )!important;
+/* sol — en zona izquierda del track (modo oscuro lo muestra) */
+.toggle-sun{
+  position:absolute!important;
+  left:8px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:2!important;
+  opacity:0!important;
+  transition:.2s ease!important;
+  pointer-events:none!important;
+}
 
-  box-shadow:
-    0 4px 10px rgba(0,0,0,.32),
-    inset 0 2px 3px rgba(255,255,255,.8)!important;
+/* luna — en zona derecha del track (modo claro la muestra) */
+.toggle-moon{
+  position:absolute!important;
+  right:8px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:2!important;
+  opacity:1!important;
+  transition:.2s ease!important;
+  pointer-events:none!important;
+}
 
-  transition:.24s cubic-bezier(.77,0,.18,1)!important;
+/* dark mode */
+body.dark .globalThemeToggle .themeTrack{
+  background:linear-gradient(145deg,#2a2a2a,#1a1a1a)!important;
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3)!important;
 }
 
 body.dark .globalThemeToggle .themeKnob{
-  left:6px!important;
+  left:4px!important;
+  background:#ffffff!important;
 }
 
+body.dark .toggle-sun{ opacity:1!important; }
+body.dark .toggle-moon{ opacity:0!important; }
 
-/* ===== HTML NUEVO WORKFLOW ===== */
+.globalThemeToggle .themeIcon{ display:none!important; }
+.knob-moon{ display:none!important; }
 
-<div class="workflow">
 
-  <button onclick="showModule('contratos')">
-    <b>Contratos</b>
-    <small>Cartera, vencimientos, estados y análisis.</small>
-  </button>
+.header{padding-right:120px!important;}
 
-  <button onclick="triggerUpload()">
-    <b>Subir archivo</b>
-    <small>PDF, Word, Excel o Project para revisión.</small>
-  </button>
+</style>
+</head>
+<body>
 
-  <button onclick="showModule('pliegos')">
-    <b>Analizar pliego</b>
-    <small>Checklist, riesgos y condiciones.</small>
-  </button>
+<button class="globalThemeToggle" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
+  <span class="themeTrack">
+    <!-- sol: visible en dark mode (zona izquierda, knob se fue a la derecha) -->
+    <svg class="toggle-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="5" fill="#f59e0b"/>
+      <line x1="12" y1="2" x2="12" y2="5" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="19" x2="12" y2="22" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="2" y1="12" x2="5" y2="12" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="19" y1="12" x2="22" y2="12" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.93" y1="4.93" x2="7.05" y2="7.05" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="16.95" y1="16.95" x2="19.07" y2="19.07" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="19.07" y1="4.93" x2="16.95" y2="7.05" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="7.05" y1="16.95" x2="4.93" y2="19.07" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <!-- luna: visible en light mode (zona derecha, knob está a la izquierda) -->
+    <svg class="toggle-moon" width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#64748b"/>
+    </svg>
+    <span class="themeKnob"></span>
+  </span>
+</button>
 
-  <button onclick="showModule('costos')">
-    <b>Costos IA</b>
-    <small>Estructuras unitarias con datos cargados.</small>
-  </button>
+<div class="app">
+  <aside class="rail">
+    <div class="railHead">
+      <button class="sideCloseClean" onclick="toggleSidebar()" aria-label="Cerrar menú">←</button>
+    </div>
+    <button class="sideToggleMini" onclick="toggleSidebar()" aria-label="Expandir menú">☰</button>
 
-  <button onclick="showModule('polinomic')">
-    <b>Polinómicas</b>
-    <small>Actualización contractual mensual.</small>
-  </button>
+    <div class="railSection">Módulos</div>
+    <button class="iconBtn active" data-mod="home" onclick="showModule('home')"><span>Inicio</span></button>
+    <button class="iconBtn" data-mod="contratos" onclick="showModule('contratos')"><span>Contratos</span></button>
+    <button class="iconBtn" data-mod="costos" onclick="showModule('costos')"><span>Costos</span></button>
+    <button class="iconBtn" data-mod="pliegos" onclick="showModule('pliegos')"><span>Pliegos</span></button>
+    <button class="iconBtn" data-mod="polinomic" onclick="showModule('polinomic')"><span>Polinómicas</span></button>
+    <button class="iconBtn" data-mod="cashflow" onclick="showModule('cashflow')"><span>Proyección</span></button>
+    <button class="iconBtn" data-mod="evm" onclick="showModule('evm')"><span>EVM</span></button>
+    <button class="iconBtn" data-mod="alertas" onclick="showModule('alertas')"><span>Alertas</span></button>
 
+    <div class="railBottom">
+      <div class="railSection">Accesos</div>
+      <button class="iconBtn uploadOnly" onclick="triggerUpload()"><span>Subir archivo</span></button>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="header">
+      <div>
+        <div class="eyebrow" id="eyebrow">THOTH AI / Contract Studio</div>
+        <h1 class="title" id="pageTitle">Centro contractual inteligente</h1>
+        <p class="subtitle" id="pageSub">Gestión de contratos, pliegos, costos unitarios, EVM, proyección y polinómicas desde un espacio único, sin tablero saturado.</p>
+      </div>
+      <div class="actions headerTheme">
+      </div>
+    </header>
+
+    <section class="stage">
+      <div id="home" class="panel active">
+        <div class="heroGrid">
+          <article class="editorialCard">
+            <div class="cardHead"><h3>Vista ejecutiva</h3><span class="statusPill pending">2 riesgos activos</span></div>
+            <div class="bigMetric">$3.54M<small>bajo gestión</small></div>
+            <div class="metricStrip">
+              <div class="metric"><label>Contratos</label><b>12</b></div>
+              <div class="metric"><label>Próx. venc.</label><b>60d</b></div>
+              <div class="metric"><label>Margen prom.</label><b>23.1%</b></div>
+              <div class="metric"><label>CPI cartera</label><b>0.94</b></div>
+            </div>
+            <div class="warningBanner" style="flex-direction:column;align-items:flex-start;gap:12px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%">
+    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Empresa</span><b style="font-size:13px">Pan American Energy</b></div>
+    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Contrato</span><b style="font-size:13px">Mantenimiento Industrial · PAE-Mant-002</b></div>
+    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Tipo de alerta</span><b style="font-size:13px">Sin cláusula de ajuste</b></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;width:100%;gap:16px">
+    <p style="font-size:13px;color:var(--muted);line-height:1.5;flex:1">Contrato sin mecanismo de actualización de precios. En contexto inflacionario, la erosión de margen proyectada es de <b style="color:var(--orange)">$45.000–$80.000</b>. Renegociación urgente o reconocimiento de adicionales.</p>
+    <button class="btn warn" onclick="showModule('alertas')" style="flex-shrink:0;align-self:flex-end">Ver alerta</button>
+  </div>
+</div>
+          </article>
+          <article class="editorialCard cut">
+            <div class="cardHead"><h3>Salud contractual</h3><span class="statusPill ok">Controlado</span></div>
+            <div class="orbit"><div class="orbitCore"><span>68%</span></div></div>
+          </article>
+        </div>
+        <div class="workflow">
+          <button onclick="showModule('contratos')"><b>Contratos</b><small>Cartera, vencimientos, estados y análisis.</small></button>
+          <button onclick="triggerUpload()"><b>Subir archivo</b><small>PDF, Word, Excel o Project para revisión.</small></button>
+          <button onclick="showModule('pliegos')"><b>Analizar pliego</b><small>Checklist, riesgos y condiciones.</small></button>
+          <button onclick="showModule('costos')"><b>Costos IA</b><small>Estructuras unitarias con datos cargados.</small></button>
+          <button onclick="showModule('polinomic')"><b>Polinómicas</b><small>Actualización contractual mensual.</small></button>
+        </div>
+      </div>
+
+      <div id="contratos" class="panel">
+        <div class="split">
+          <article class="editorialCard">
+            <div class="cardHead"><h3>Cartera contractual</h3><button class="btn primary" onclick="addContract()">+ Nuevo contrato</button></div>
+            <div class="list" id="contractList">
+              <div class="rowCard"><strong>CT-2025-001</strong><span><b>YPF S.A.</b><br><span class="meta">Polinómica · Feb-25</span></span><span class="mono">$1.550.000</span><span class="statusPill ok">Vigente</span><button class="btn" onclick="ask('Analizar CT-2025-001')">Analizar</button></div>
+              <div class="rowCard"><strong>CT-2025-002</strong><span><b>TGN</b><br><span class="meta">IPC · May-25</span></span><span class="mono">$890.000</span><span class="statusPill pending">Renovar</span><button class="btn" onclick="ask('Analizar renovación CT-2025-002')">Analizar</button></div>
+              <div class="rowCard"><strong>CT-2025-003</strong><span><b>Pan American</b><br><span class="meta">Sin ajuste · Jul-25</span></span><span class="mono">$1.100.000</span><span class="statusPill danger">Riesgo</span><button class="btn" onclick="ask('Analizar riesgo CT-2025-003')">Analizar</button></div>
+            </div>
+          </article>
+          <aside class="uploadDrop">
+            <label for="fileUpload">↑ Subir contratos / pliegos</label>
+            <p class="subtitle" style="margin-top:8px">Los archivos quedan listados para análisis. No se eliminan contratos precargados.</p>
+            <input id="fileUpload" type="file" multiple accept=".pdf,.doc,.docx,.xlsx,.xls,.csv,.mpp" onchange="handleFiles(this.files)">
+            <div class="fileList" id="fileList"><div class="fileItem"><span>📎 Contratos precargados demo</span><span class="statusPill ok">Activo</span></div></div>
+          </aside>
+        </div>
+      </div>
+
+      <div id="costos" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Estructuras de costo unitarias</h3><button class="btn primary" onclick="ask('Crear estructura de costos con datos cargados')">Crear con IA</button></div><p class="subtitle">Cargá HH, equipos, logística, combustibles, insumos, coeficientes y márgenes. THOTH AI trabaja con datos aportados e históricos.</p><table class="tableLite" style="margin-top:20px"><thead><tr><th>Ítem</th><th>Unidad</th><th>Costo base</th><th>Coef.</th><th>Precio sugerido</th><th>Estado</th></tr></thead><tbody><tr><td>Mano de obra</td><td>HH</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Equipo</td><td>Día</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Logística</td><td>Km/Viaje</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr></tbody></table></article></div>
+
+      <div id="pliegos" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Análisis documental</h3><button class="btn primary" onclick="triggerUpload()">Subir pliego</button></div><div class="workflow" style="margin-top:0"><button onclick="ask('Generar checklist del pliego cargado')"><b>Checklist</b><small>Requisitos obligatorios.</small></button><button onclick="ask('Detectar riesgos contractuales del pliego')"><b>Riesgos</b><small>Penalidades y cláusulas críticas.</small></button><button onclick="ask('Extraer condiciones comerciales del pliego')"><b>Comercial</b><small>Pagos, garantías y ajustes.</small></button><button onclick="ask('Resumen ejecutivo del pliego')"><b>Resumen</b><small>Máximo 300 palabras.</small></button><button onclick="ask('Detectar polinómicas o ajustes de precio')"><b>Polinómica</b><small>Índices y fórmula.</small></button></div></article></div>
+
+      <div id="polinomic" class="panel"><div class="split"><article class="editorialCard"><div class="cardHead"><h3>Matriz mensual de actualización</h3><button class="btn primary" onclick="calcPoli()">Calcular</button></div><div class="formGrid"><div class="field"><label>Contrato</label><select id="pcContract"><option>CT-2025-001 · YPF</option><option>CT-2025-002 · TGN</option><option>CT-2025-003 · PAE</option></select></div><div class="field"><label>Mes</label><input id="pcMonth" type="month" value="2025-03"></div><div class="field"><label>Monto base</label><input id="pcBase" type="number" value="1550000"></div><div class="field"><label>Coeficiente</label><input id="pcCoef" type="number" step="0.0001" value="1.1845"></div><div class="field"><label>Mano de obra</label><input type="number" step="0.01" value="0.38"></div><div class="field"><label>Materiales</label><input type="number" step="0.01" value="0.42"></div></div><div class="formula">P₁ = P₀ × [ a × (MO₁/MO₀) + b × (MAT₁/MAT₀) + c × (EQ₁/EQ₀) + d ]</div></article><aside><div class="result"><small>Precio actualizado</small><b id="pcResult">$1.835.975</b><span id="pcDelta">Variación estimada: +18,45%</span></div><div class="metricStrip" style="margin-top:14px;grid-template-columns:1fr"><div class="metric"><label>Base</label><b id="pcBaseOut">$1.550.000</b></div><div class="metric"><label>Coeficiente</label><b id="pcCoefOut">1,1845</b></div><div class="metric"><label>Diferencia</label><b id="pcDiffOut">$285.975</b></div></div></aside></div></div>
+
+      <div id="cashflow" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Proyección financiera</h3><button class="btn primary" onclick="ask('Analizar cash flow proyectado')">Analizar caja</button></div><div class="metricStrip"><div class="metric"><label>Saldo actual</label><b>$487K</b></div><div class="metric"><label>Mes crítico</label><b>Mar-25</b></div><div class="metric"><label>Capital trabajo</label><b>$220K</b></div><div class="metric"><label>Cobertura</label><b>2.1x</b></div></div></article></div>
+
+      <div id="evm" class="panel"><article class="editorialCard"><div class="cardHead"><h3>EVM / Control</h3><button class="btn primary" onclick="ask('Calcular EVM completo')">Calcular EVM</button></div><div class="metricStrip"><div class="metric"><label>CPI</label><b style="color:var(--danger)">0.82</b></div><div class="metric"><label>SPI</label><b style="color:var(--warn)">0.91</b></div><div class="metric"><label>EAC</label><b>$1.34M</b></div><div class="metric"><label>Acción</label><b>Alta</b></div></div><div class="warningBanner"><div><b>PAE-Mant-002:</b> sobrecosto proyectado y atraso. Requiere plan correctivo.</div><button class="btn warn" onclick="ask('Generar plan correctivo CPI menor a 1')">Plan correctivo</button></div></article></div>
+
+      <div id="alertas" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Alertas</h3><button class="btn primary" onclick="ask('Crear nueva alerta contractual')">Nueva alerta</button></div>
+
+<div class="alertItem">
+  <div style="flex:1;display:grid;gap:10px">
+    <div style="display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Vencimiento</span><b style="font-size:15px">May-2025</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Días restantes</span><b style="font-size:15px;color:var(--warn)">60 días</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Prioridad</span><b style="font-size:15px;color:var(--warn)">Media</b></div>
+      <div style="padding:10px 16px"></div>
+    </div>
+    <span style="font-size:12px;color:var(--muted);font-weight:700">TGN · Servicio de transporte y mantenimiento</span>
+    <span class="meta">Revisar condiciones de renovación, índice IPC acumulado y posible renegociación de tarifas. Sin acción en los próximos 30 días, el contrato queda expuesto a renovación tácita en términos desfavorables.</span>
+  </div>
+  <button class="btn warn" onclick="ask('Analizar renovación y riesgo CT-2025-002 TGN')" style="flex-shrink:0;align-self:flex-start">Ver alerta</button>
 </div>
 
+<div class="alertItem" style="border-left-color:var(--danger)">
+  <div style="flex:1;display:grid;gap:10px">
+    <div style="display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Vencimiento</span><b style="font-size:15px">Jul-2025</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Días restantes</span><b style="font-size:15px;color:var(--danger)">Sin ajuste</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Prioridad</span><b style="font-size:15px;color:var(--danger)">Alta</b></div>
+      <div style="padding:10px 16px"></div>
+    </div>
+    <span style="font-size:12px;color:var(--muted);font-weight:700">Pan American Energy · Mantenimiento industrial PAE-Mant-002</span>
+    <span class="meta">El contrato no contempla mecanismo de actualización de precios. En contexto inflacionario actual, la erosión de margen proyectada es de <b>$45.000–$80.000</b>. Se requiere renegociación urgente o reconocimiento de adicionales por parte del cliente.</span>
+  </div>
+  <button class="btn warn" onclick="ask('Analizar riesgo financiero CT-2025-003 PAE sin ajuste contractual')" style="flex-shrink:0;align-self:flex-start">Ver alerta</button>
+</div>
 
-/* ===== HTML SWITCH ===== */
+<div class="alertItem">
+  <div style="flex:1;display:grid;gap:10px">
+    <div style="display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Fecha límite</span><b style="font-size:15px">Mar-2025</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Estado</span><b style="font-size:15px;color:var(--warn)">Pendiente</b></div>
+      <div style="padding:10px 16px;border-right:1px solid var(--line)"><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px">Prioridad</span><b style="font-size:15px;color:var(--warn)">Revisar</b></div>
+      <div style="padding:10px 16px"></div>
+    </div>
+    <span style="font-size:12px;color:var(--muted);font-weight:700">Sistema · Actualización polinómica mensual</span>
+    <span class="meta">Los índices de MO, materiales y equipos de Marzo 2025 no fueron cargados. Sin esta actualización no es posible calcular los coeficientes de ajuste de CT-2025-001 (YPF) y CT-2025-002 (TGN). Cargar antes del cierre del mes.</span>
+  </div>
+  <button class="btn" onclick="showModule('polinomic')" style="flex-shrink:0;align-self:flex-start">Ver alerta</button>
+</div>
+</article></div>
+    </section>
+  </main>
+</div>
+
+<aside class="assistant" id="assistantPanel"><div class="chatHead"><div><h3>THOTH AI — Copilot</h3><p id="assistantText">Consultas rápidas sobre contratos, costos, pliegos y ajustes.</p></div><button class="close" onclick="toggleAssistant(false)">×</button></div><div class="chatBody" id="chat"><div class="msg"><b>THOTH AI listo.</b><br>Subí contratos, pliegos o Excel. Luego pedime análisis conciso, riesgos, estructuras de costos o actualización polinómica.</div></div><div class="quick" id="quickActions"></div><div class="chatInput"><textarea id="prompt" placeholder="Preguntá sobre contratos, pliegos, costos..."></textarea><button class="send" onclick="sendMsg()">➤</button></div></aside>
+<button class="helpFab" id="helpFab" onclick="toggleAssistant()">✦<small id="helpFabLabel">Ayuda THOTH AI</small></button><div class="toastBox" id="toastBox"></div>
+
+<script>
+function toggleSidebar(){
+  const app=document.querySelector('.app');
+  const isOpen=app.classList.toggle('sidebar-open');
+  localStorage.setItem('thoth-sidebar',isOpen?'open':'closed');
+}
+(function(){
+  window.addEventListener('DOMContentLoaded',()=>{
+    const app=document.querySelector('.app');
+    if(localStorage.getItem('thoth-sidebar')==='open'){
+      app?.classList.add('sidebar-open');
+    }else{
+      app?.classList.remove('sidebar-open');
+    }
+  });
+})();
+const cfg={home:{title:'Centro contractual inteligente',eyebrow:'THOTH AI / Contract Studio',sub:'Gestión de contratos, pliegos, costos unitarios, EVM, proyección y polinómicas desde un espacio único, sin tablero saturado.',quick:['Resumen cartera','Alertas críticas','Vencimientos','Reporte ejecutivo'],actions:[['Subir','triggerUpload',''],['Nuevo','addContract',''],['Riesgos','ask','Analizar riesgos contractuales activos','warn'],['Reporte','ask','Generar reporte ejecutivo de contratos','primary']]},contratos:{title:'Contratos activos',eyebrow:'THOTH AI / Gestión contractual',sub:'Cartera contractual con estado, vencimientos, ajustes y acciones ejecutivas.',quick:['Analizar contrato','Resumen','Riesgos','Vencimientos'],actions:[['Subir','triggerUpload',''],['Nuevo','addContract',''],['Riesgos','ask','Analizar riesgos contractuales activos','warn'],['Reporte','ask','Generar reporte contractual ejecutivo','primary']]},costos:{title:'Costos unitarios con IA',eyebrow:'THOTH AI / Costos',sub:'Estructuras unitarias alimentadas por tus datos: HH, equipos, logística, insumos, coeficientes y margen.',quick:['Costos IA','Margen objetivo','Comparar históricos','Pricing'],actions:[['Subir','triggerUpload',''],['Crear estructura','ask','Crear estructura de costos con datos cargados','primary'],['Pricing','ask','Sugerir pricing dinámico','warn']]},pliegos:{title:'Lectura de pliegos',eyebrow:'THOTH AI / Análisis documental',sub:'Extracción ejecutiva de alcance, requisitos, garantías, penalidades, fechas y riesgos contractuales.',quick:['Checklist','Riesgos','Condiciones pago','Resumen'],actions:[['Subir','triggerUpload',''],['Checklist','ask','Generar checklist del pliego cargado','primary'],['Riesgos','ask','Detectar riesgos contractuales del pliego','warn']]},polinomic:{title:'Polinómicas',eyebrow:'THOTH AI / Actualización contractual',sub:'Simulador de actualización mensual, coeficientes, índices y trazabilidad de precio contractual.',quick:['Calcular polinómica','Revisar fórmula','Explicar variación','Reporte ajuste'],actions:[['Subir','triggerUpload',''],['Calcular','calcPoli','','primary'],['Analizar IA','ask','Analizar actualización polinómica',''],['Crear alerta','ask','Crear alerta de actualización contractual','warn']]},cashflow:{title:'Proyección financiera',eyebrow:'THOTH AI / Cash Flow',sub:'Evaluación de caja, ingresos, egresos, meses críticos y necesidad de capital de trabajo.',quick:['Déficit Mar-25','Capital trabajo','Liquidez','Reporte'],actions:[['Subir','triggerUpload',''],['Analizar caja','ask','Analizar cash flow proyectado','primary'],['Capital trabajo','ask','Evaluar necesidad de capital de trabajo','warn']]},evm:{title:'EVM / Control de gestión',eyebrow:'THOTH AI / Performance',sub:'Seguimiento de CPI, SPI, EV, PV, AC, EAC, ETC y desvíos de plazo/costo.',quick:['Calcular EVM','CPI/SPI','Plan correctivo','Forecast'],actions:[['Subir','triggerUpload',''],['Calcular EVM','ask','Calcular EVM completo','primary'],['Plan correctivo','ask','Generar plan correctivo CPI menor a 1','warn']]},alertas:{title:'Alertas contractuales',eyebrow:'THOTH AI / Seguimiento',sub:'Vencimientos, riesgos, índices pendientes y acciones preventivas.',quick:['Alertas críticas','Vencimientos','Índices pendientes','Riesgos'],actions:[['Nueva alerta','ask','Crear nueva alerta contractual','primary'],['Críticas','ask','Listar alertas críticas','warn']]}};
+function showModule(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.iconBtn[data-mod]').forEach(b=>b.classList.toggle('active',b.dataset.mod===id));const c=cfg[id];document.getElementById('pageTitle').textContent=c.title;document.getElementById('eyebrow').textContent=c.eyebrow;document.getElementById('pageSub').textContent=c.sub;document.getElementById('assistantText').textContent=c.sub;renderActions(id)}
+function renderActions(id){
+  const quick=document.getElementById('quickActions');
+  if(quick && cfg[id]) quick.innerHTML=cfg[id].quick.map(x=>`<button onclick="ask('${x}')">${x}</button>`).join('');
+}
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('thoth-theme',document.body.classList.contains('dark')?'dark':'light')}
+(function(){if(localStorage.getItem('thoth-theme')==='dark')document.body.classList.add('dark');window.addEventListener('DOMContentLoaded',()=>renderActions('home'))})();
+function triggerUpload(){document.getElementById('fileUpload').click()}
+function handleFiles(files){showModule('contratos');const list=document.getElementById('fileList');[...files].forEach(f=>{const item=document.createElement('div');item.className='fileItem';item.innerHTML=`<span>📎 ${escapeHtml(f.name)}</span><span class="statusPill pending">Cargado</span>`;list.appendChild(item)});ask(`Archivos cargados: ${[...files].map(f=>f.name).join(', ')}. Preparar análisis contractual.`)}
+function addContract(){showModule('contratos');const id='CT-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900+100));document.getElementById('contractList').insertAdjacentHTML('beforeend',`<div class="rowCard"><strong>${id}</strong><span><b>Cliente a definir</b><br><span class="meta">Ajuste a definir · Sin fecha</span></span><span class="mono">$0</span><span class="statusPill pending">Borrador</span><button class="btn" onclick="ask('Analizar ${id}')">Analizar</button></div>`);toast('Contrato borrador creado')}
+function ask(text){toggleAssistant(true);document.getElementById('prompt').value=text;sendMsg()}
+function toggleAssistant(open){
+  const panel=document.getElementById('assistantPanel');
+  const fab=document.getElementById('helpFab');
+  const label=document.getElementById('helpFabLabel');
+  const next=(typeof open==='boolean')?open:!panel.classList.contains('open');
+  panel.classList.toggle('open',next);
+  if(fab) fab.classList.toggle('is-open',next);
+  if(label) label.textContent=next?'Cerrar THOTH AI':'Ayuda THOTH AI';
+}
+function sendMsg(){const p=document.getElementById('prompt');const text=p.value.trim();if(!text)return;p.value='';const chat=document.getElementById('chat');chat.insertAdjacentHTML('beforeend',`<div class="msg user">${escapeHtml(text)}</div>`);setTimeout(()=>{chat.insertAdjacentHTML('beforeend',`<div class="msg"><b>Respuesta demo:</b><br>La interfaz está lista. Para respuesta real falta conectar backend con OpenAI/Claude y lectura de archivos.</div>`);chat.scrollTop=chat.scrollHeight},300);chat.scrollTop=chat.scrollHeight}
+function calcPoli(){const base=Number(document.getElementById('pcBase')?.value||0),coef=Number(document.getElementById('pcCoef')?.value||1),result=base*coef,diff=result-base,pct=(coef-1)*100,fmt=n=>n.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});document.getElementById('pcResult').textContent=fmt(result);document.getElementById('pcDelta').textContent='Variación estimada: '+pct.toFixed(2).replace('.',',')+'%';document.getElementById('pcBaseOut').textContent=fmt(base);document.getElementById('pcCoefOut').textContent=coef.toFixed(4).replace('.',',');document.getElementById('pcDiffOut').textContent=fmt(diff);toast('Actualización calculada correctamente')}
+function toast(msg){const box=document.getElementById('toastBox'),t=document.createElement('div');t.className='toast';t.textContent=msg;box.appendChild(t);setTimeout(()=>t.remove(),3200)}
+function escapeHtml(s){return s.replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+</script>
+</body>
+</html>
 
 <button class="globalThemeToggle" onclick="toggleTheme()">
   <span class="themeTrack">
