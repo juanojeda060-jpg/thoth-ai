@@ -303,7 +303,7 @@ body.dark .themeKnob{
   color:var(--orange);
 }
 .stage{overflow:auto;padding:26px 28px 90px}.stage::-webkit-scrollbar,.chatBody::-webkit-scrollbar{width:7px}.stage::-webkit-scrollbar-thumb,.chatBody::-webkit-scrollbar-thumb{background:rgba(255,107,0,.35);border-radius:99px}.panel{display:none;animation:fade .2s}.panel.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.heroGrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.6fr);gap:20px;align-items:start}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;min-height:270px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px;min-height:0;padding:20px;display:flex;flex-direction:column;justify-content:center}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:220px;height:220px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
+.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;min-height:270px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px;min-height:0;padding:20px;display:flex;flex-direction:column;justify-content:center}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:220px;height:220px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
 .cardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px;position:relative}.cardHead h3{text-transform:uppercase;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--muted)}
 .bigMetric{font-size:74px;line-height:.9;letter-spacing:-.08em;font-weight:950;margin-top:22px}.bigMetric small{font-size:16px;letter-spacing:0;color:var(--muted);margin-left:8px}
 .metricStrip{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--paper)}.metric{padding:16px;border-right:1px solid var(--line);text-align:center}.metric:last-child{border-right:0}.metric label{display:block;color:var(--muted);font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:8px;font-size:22px}
@@ -581,14 +581,14 @@ body.dark .toggle-moon{ opacity:0!important; }
           <article class="editorialCard cut">
             <div class="cardHead"><h3>Salud contractual</h3><span class="statusPill ok">Controlado</span></div>
             <div class="orbit"><div class="orbitCore"><span>68%</span></div></div>
+            <div class="workflow" style="margin-top:16px;grid-template-columns:1fr 1fr;gap:8px">
+              <button onclick="showModule('contratos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Contratos</b><small>Cartera y vencimientos.</small></button>
+              <button onclick="triggerUpload()" style="min-height:auto;padding:12px"><b style="font-size:12px">Subir archivo</b><small>PDF, Word, Excel.</small></button>
+              <button onclick="showModule('pliegos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Analizar pliego</b><small>Checklist y riesgos.</small></button>
+              <button onclick="showModule('costos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Costos IA</b><small>Estructuras unitarias.</small></button>
+              <button onclick="showModule('polinomic')" style="min-height:auto;padding:12px;grid-column:1/-1"><b style="font-size:12px">Polinómicas</b><small>Actualización contractual mensual.</small></button>
+            </div>
           </article>
-        </div>
-        <div class="workflow">
-          <button onclick="showModule('contratos')"><b>Contratos</b><small>Cartera, vencimientos, estados y análisis.</small></button>
-          <button onclick="triggerUpload()"><b>Subir archivo</b><small>PDF, Word, Excel o Project para revisión.</small></button>
-          <button onclick="showModule('pliegos')"><b>Analizar pliego</b><small>Checklist, riesgos y condiciones.</small></button>
-          <button onclick="showModule('costos')"><b>Costos IA</b><small>Estructuras unitarias con datos cargados.</small></button>
-          <button onclick="showModule('polinomic')"><b>Polinómicas</b><small>Actualización contractual mensual.</small></button>
         </div>
       </div>
 
