@@ -269,7 +269,7 @@ body.dark .themeKnob{
 .bigMetric{font-size:52px;line-height:.9;letter-spacing:-.08em;font-weight:950;margin-top:12px}.bigMetric small{font-size:14px;letter-spacing:0;color:var(--muted);margin-left:6px}
 .metricStrip{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--paper)}.metric{padding:10px 12px;border-right:1px solid var(--line);text-align:center}.metric:last-child{border-right:0}.metric label{display:block;color:var(--muted);font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:4px;font-size:18px}
 .statusPill{font-family:var(--mono);font-size:11px;border:1px solid;padding:6px 9px;border-radius:99px;font-weight:800}.ok{color:var(--ok);background:rgba(15,159,110,.10);border-color:rgba(15,159,110,.25)}.pending{color:var(--warn);background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.25)}.danger{color:var(--danger);background:rgba(220,38,38,.10);border-color:rgba(220,38,38,.25)}
-.warningBanner{margin-top:12px;border:1px solid rgba(255,107,0,.26);background:rgba(255,107,0,.10);padding:14px 16px;display:flex;justify-content:space-between;gap:18px;align-items:center;border-radius:18px 4px 18px 18px}.warningBanner b{color:var(--orange)}
+.warningBanner{margin-top:10px;border:1px solid rgba(255,107,0,.26);background:rgba(255,107,0,.10);padding:10px 14px;display:flex;justify-content:space-between;gap:14px;align-items:center;border-radius:18px 4px 18px 18px}.warningBanner b{color:var(--orange)}
 .orbit{width:120px;height:120px;margin:8px auto;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(255,107,0,.15),transparent 60%)}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid var(--line);border-radius:50%}.orbit:before{inset:14px}.orbit:after{inset:28px}.orbitCore{width:58px;height:58px;border-radius:12px;background:var(--orange);color:white;display:grid;place-items:center;text-align:center;font-weight:950;transform:rotate(-8deg);box-shadow:0 8px 20px rgba(255,107,0,.3)}.orbitCore span{display:block;transform:rotate(8deg);font-size:15px}
 .workflow{margin-top:22px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.workflow button{text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:18px;min-height:122px;cursor:pointer;border-radius:18px 18px 18px 3px;transition:.18s}.workflow button:nth-child(even){border-radius:18px 3px 18px 18px}.workflow button:hover{transform:translateY(-3px);border-color:rgba(255,107,0,.45);background:rgba(255,107,0,.10)}.workflow i{font-style:normal;font-size:28px;display:block;margin-bottom:12px}.workflow small{display:block;margin-top:6px;color:var(--muted);line-height:1.35}
 .split{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px}.list{display:grid;gap:12px}.rowCard{border:1px solid var(--line);background:var(--panel);padding:16px;display:grid;grid-template-columns:130px 1fr 120px 120px auto;gap:14px;align-items:center;border-radius:18px 4px 18px 18px;transition:.18s}.rowCard:nth-child(even){border-radius:4px 18px 18px 18px}.rowCard:hover{transform:translateX(3px);border-color:rgba(255,107,0,.38)}.meta{color:var(--muted);font-size:13px}.mono{font-family:var(--mono)}
@@ -527,75 +527,69 @@ body.dark .toggle-moon{ opacity:0!important; }
               <div class="metric"><label>Margen prom.</label><b>23.1%</b></div>
               <div class="metric"><label>CPI cartera</label><b>0.94</b></div>
             </div>
-            <div class="warningBanner" style="flex-direction:column;align-items:flex-start;gap:12px">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%">
-    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Empresa</span><b style="font-size:13px">Pan American Energy</b></div>
-    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Contrato</span><b style="font-size:13px">Mantenimiento Industrial · PAE-Mant-002</b></div>
-    <div><span style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:3px">Tipo de alerta</span><b style="font-size:13px">Sin cláusula de ajuste</b></div>
+            <div class="warningBanner" style="flex-direction:column;align-items:flex-start;gap:8px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%">
+    <div><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px">Empresa</span><b style="font-size:12px">Pan American Energy</b></div>
+    <div><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px">Contrato</span><b style="font-size:12px">Mantenimiento Industrial · PAE-Mant-002</b></div>
+    <div><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px">Tipo de alerta</span><b style="font-size:12px">Sin cláusula de ajuste</b></div>
   </div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;width:100%;gap:16px">
-    <p style="font-size:13px;color:var(--muted);line-height:1.5;flex:1">Contrato sin mecanismo de actualización de precios. En contexto inflacionario, la erosión de margen proyectada es de <b style="color:var(--orange)">$45.000–$80.000</b>. Renegociación urgente o reconocimiento de adicionales.</p>
-    <button class="btn warn" onclick="showModule('alertas')" style="flex-shrink:0;align-self:flex-end">Ver alerta</button>
+  <div style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px">
+    <p style="font-size:12px;color:var(--muted);line-height:1.45;flex:1">Contrato sin mecanismo de actualización de precios. En contexto inflacionario, la erosión de margen proyectada es de <b style="color:var(--orange)">$45.000–$80.000</b>. Renegociación urgente o reconocimiento de adicionales.</p>
+    <button class="btn warn" onclick="showModule('alertas')" style="flex-shrink:0;padding:7px 12px;font-size:12px">Ver alerta</button>
   </div>
 </div>
           </article>
           <article class="editorialCard cut">
             <div class="cardHead"><h3>Facturación por empresa</h3><span class="statusPill ok">$3.54M total</span></div>
-            <div style="display:flex;flex-direction:column;gap:14px;margin-top:6px;flex:1;justify-content:center">
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;flex:1;justify-content:center">
 
               <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
-                  <span style="font-size:13px;font-weight:700">YPF S.A.</span>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.550.000 <b style="color:var(--ink)">43.8%</b></span>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;align-items:baseline">
+                  <span style="font-size:12px;font-weight:700">YPF S.A.</span>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">$1.550.000 <b style="color:var(--ink)">43.8%</b></span>
                 </div>
-                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
-                  <div style="width:43.8%;height:100%;background:linear-gradient(90deg,#ff6b00,#ffaa55);border-radius:6px;position:relative">
-                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
-                  </div>
+                <div style="height:20px;border-radius:5px;overflow:hidden;background:rgba(0,0,0,.06)">
+                  <div style="width:43.8%;height:100%;background:linear-gradient(90deg,#ff6b00,#ffaa55);border-radius:5px;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div></div>
                 </div>
               </div>
 
               <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
-                  <span style="font-size:13px;font-weight:700">Pan American Energy</span>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.100.000 <b style="color:var(--ink)">31.1%</b></span>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;align-items:baseline">
+                  <span style="font-size:12px;font-weight:700">Pan American Energy</span>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">$1.100.000 <b style="color:var(--ink)">31.1%</b></span>
                 </div>
-                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
-                  <div style="width:31.1%;height:100%;background:linear-gradient(90deg,#c95000,#ff8c40);border-radius:6px;position:relative">
-                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
-                  </div>
+                <div style="height:20px;border-radius:5px;overflow:hidden;background:rgba(0,0,0,.06)">
+                  <div style="width:31.1%;height:100%;background:linear-gradient(90deg,#c95000,#ff8c40);border-radius:5px;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div></div>
                 </div>
               </div>
 
               <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
-                  <span style="font-size:13px;font-weight:700">TGN</span>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$890.000 <b style="color:var(--ink)">25.1%</b></span>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;align-items:baseline">
+                  <span style="font-size:12px;font-weight:700">TGN</span>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">$890.000 <b style="color:var(--ink)">25.1%</b></span>
                 </div>
-                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
-                  <div style="width:25.1%;height:100%;background:linear-gradient(90deg,#7a3000,#d4620a);border-radius:6px;position:relative">
-                    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div>
-                  </div>
+                <div style="height:20px;border-radius:5px;overflow:hidden;background:rgba(0,0,0,.06)">
+                  <div style="width:25.1%;height:100%;background:linear-gradient(90deg,#7a3000,#d4620a);border-radius:5px;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent)"></div></div>
                 </div>
               </div>
 
               <div>
-                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
-                  <span style="font-size:13px;font-weight:700">Otros</span>
-                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$0 <b style="color:var(--ink)">0%</b></span>
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;align-items:baseline">
+                  <span style="font-size:12px;font-weight:700">Otros</span>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">$0 <b style="color:var(--ink)">0%</b></span>
                 </div>
-                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
-                  <div style="width:0%;height:100%;background:linear-gradient(90deg,#444,#888);border-radius:6px"></div>
+                <div style="height:20px;border-radius:5px;overflow:hidden;background:rgba(0,0,0,.06)">
+                  <div style="width:0%;height:100%;background:linear-gradient(90deg,#444,#888);border-radius:5px"></div>
                 </div>
               </div>
 
             </div>
-            <div class="workflow" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:8px">
-              <button onclick="showModule('contratos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Contratos</b><small>Cartera y vencimientos.</small></button>
-              <button onclick="triggerUpload()" style="min-height:auto;padding:12px"><b style="font-size:12px">Subir archivo</b><small>PDF, Word, Excel.</small></button>
-              <button onclick="showModule('pliegos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Analizar pliego</b><small>Checklist y riesgos.</small></button>
-              <button onclick="showModule('costos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Costos IA</b><small>Estructuras unitarias.</small></button>
-              <button onclick="showModule('polinomic')" style="min-height:auto;padding:12px;grid-column:1/-1"><b style="font-size:12px">Polinómicas</b><small>Actualización contractual mensual.</small></button>
+            <div class="workflow" style="margin-top:8px;grid-template-columns:1fr 1fr;gap:6px">
+              <button onclick="showModule('contratos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Contratos</b><small style="font-size:10px">Cartera y vencimientos.</small></button>
+              <button onclick="triggerUpload()" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Subir archivo</b><small style="font-size:10px">PDF, Word, Excel.</small></button>
+              <button onclick="showModule('pliegos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Analizar pliego</b><small style="font-size:10px">Checklist y riesgos.</small></button>
+              <button onclick="showModule('costos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Costos IA</b><small style="font-size:10px">Estructuras unitarias.</small></button>
+              <button onclick="showModule('polinomic')" style="min-height:auto;padding:8px 10px;grid-column:1/-1"><b style="font-size:11px">Polinómicas</b><small style="font-size:10px">Actualización contractual mensual.</small></button>
             </div>
           </article>
         </div>
