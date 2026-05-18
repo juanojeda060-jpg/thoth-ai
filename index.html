@@ -540,9 +540,31 @@ body.dark .toggle-moon{ opacity:0!important; }
 </div>
           </article>
           <article class="editorialCard cut">
-            <div class="cardHead"><h3>Salud contractual</h3><span class="statusPill ok">Controlado</span></div>
-            <div class="orbit"><div class="orbitCore"><span>68%</span></div></div>
-            <div class="workflow" style="margin-top:16px;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="cardHead"><h3>Facturación por empresa</h3><span class="statusPill ok">$3.54M total</span></div>
+            <div style="display:flex;align-items:center;gap:16px;margin-top:4px">
+              <div style="position:relative;flex-shrink:0">
+                <canvas id="pieChart" width="130" height="130"></canvas>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
+                  <span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Total</span>
+                  <b style="font-size:15px;letter-spacing:-.03em">$3.54M</b>
+                </div>
+              </div>
+              <div style="display:grid;gap:7px;flex:1">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#ff6b00;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">YPF S.A.</span></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.550.000 <span style="color:var(--ink);font-weight:700">43.8%</span></span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#3483fa;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">Pan American</span></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$1.100.000 <span style="color:var(--ink);font-weight:700">31.1%</span></span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                  <div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:50%;background:#059669;flex-shrink:0"></span><span style="font-size:12px;font-weight:600">TGN</span></div>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$890.000 <span style="color:var(--ink);font-weight:700">25.1%</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="workflow" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:8px">
               <button onclick="showModule('contratos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Contratos</b><small>Cartera y vencimientos.</small></button>
               <button onclick="triggerUpload()" style="min-height:auto;padding:12px"><b style="font-size:12px">Subir archivo</b><small>PDF, Word, Excel.</small></button>
               <button onclick="showModule('pliegos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Analizar pliego</b><small>Checklist y riesgos.</small></button>
@@ -674,6 +696,38 @@ function sendMsg(){const p=document.getElementById('prompt');const text=p.value.
 function calcPoli(){const base=Number(document.getElementById('pcBase')?.value||0),coef=Number(document.getElementById('pcCoef')?.value||1),result=base*coef,diff=result-base,pct=(coef-1)*100,fmt=n=>n.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});document.getElementById('pcResult').textContent=fmt(result);document.getElementById('pcDelta').textContent='Variación estimada: '+pct.toFixed(2).replace('.',',')+'%';document.getElementById('pcBaseOut').textContent=fmt(base);document.getElementById('pcCoefOut').textContent=coef.toFixed(4).replace('.',',');document.getElementById('pcDiffOut').textContent=fmt(diff);toast('Actualización calculada correctamente')}
 function toast(msg){const box=document.getElementById('toastBox'),t=document.createElement('div');t.className='toast';t.textContent=msg;box.appendChild(t);setTimeout(()=>t.remove(),3200)}
 function escapeHtml(s){return s.replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+function drawPie(){
+  const canvas=document.getElementById('pieChart');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const cx=65,cy=65,r=58,inner=34;
+  const data=[{val:1550000,color:'#ff6b00'},{val:1100000,color:'#3483fa'},{val:890000,color:'#059669'}];
+  const total=data.reduce((s,d)=>s+d.val,0);
+  let angle=-Math.PI/2;
+  ctx.clearRect(0,0,130,130);
+  data.forEach(d=>{
+    const slice=(d.val/total)*Math.PI*2;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,angle,angle+slice);ctx.closePath();
+    ctx.fillStyle=d.color;ctx.fill();
+    angle+=slice;
+  });
+  angle=-Math.PI/2;
+  data.forEach(d=>{
+    const slice=(d.val/total)*Math.PI*2;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*r,cy+Math.sin(angle)*r);
+    ctx.strokeStyle='rgba(255,255,255,.9)';ctx.lineWidth=2.5;ctx.stroke();
+    angle+=slice;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,inner,0,Math.PI*2);
+  ctx.fillStyle=document.body.classList.contains('dark')?'#151516':'#fffaf4';ctx.fill();
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  drawPie();
+  const orig=window.toggleTheme;
+  window.toggleTheme=function(){orig();setTimeout(drawPie,60)};
+});
 </script>
+</body>
+</html>
 </body>
 </html>
