@@ -617,8 +617,7 @@ body.dark .toggle-moon{ opacity:0!important; }
       <div id="costos" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Estructuras de costo unitarias</h3><button class="btn primary" onclick="ask('Crear estructura de costos con datos cargados')">Crear con IA</button></div><p class="subtitle">Cargá HH, equipos, logística, combustibles, insumos, coeficientes y márgenes. THOTH AI trabaja con datos aportados e históricos.</p><table class="tableLite" style="margin-top:20px"><thead><tr><th>Ítem</th><th>Unidad</th><th>Costo base</th><th>Coef.</th><th>Precio sugerido</th><th>Estado</th></tr></thead><tbody><tr><td>Mano de obra</td><td>HH</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Equipo</td><td>Día</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Logística</td><td>Km/Viaje</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr></tbody></table></article></div>
 
       <div id="pliegos" class="panel">
-        <div class="split">
-          <article class="editorialCard">
+        <article class="editorialCard">
             <div class="cardHead"><h3>Análisis documental</h3></div>
             <div class="uploadDrop" id="pliegoDrop" style="cursor:pointer" onclick="triggerUpload()">
               <label style="cursor:pointer;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700">
@@ -643,13 +642,6 @@ body.dark .toggle-moon{ opacity:0!important; }
               </div>
             </div>
           </article>
-          <aside class="uploadDrop">
-            <label for="fileUpload">↑ Subir contratos / pliegos</label>
-            <p class="subtitle" style="margin-top:8px;font-size:12px">Archivos adicionales para análisis cruzado.</p>
-            <input id="fileUpload" type="file" multiple accept=".pdf,.doc,.docx,.xlsx,.xls,.csv,.mpp" onchange="handleFiles(this.files)">
-            <div class="fileList" id="fileList"><div class="fileItem"><span>📎 Contratos precargados demo</span><span class="statusPill ok">Activo</span></div></div>
-          </aside>
-        </div>
       </div>
 
       <div id="polinomic" class="panel"><div class="split"><article class="editorialCard"><div class="cardHead"><h3>Matriz mensual de actualización</h3><button class="btn primary" onclick="calcPoli()">Calcular</button></div><div class="formGrid"><div class="field"><label>Contrato</label><select id="pcContract"><option>CT-2025-001 · YPF</option><option>CT-2025-002 · TGN</option><option>CT-2025-003 · PAE</option></select></div><div class="field"><label>Mes</label><input id="pcMonth" type="month" value="2025-03"></div><div class="field"><label>Monto base</label><input id="pcBase" type="number" value="1550000"></div><div class="field"><label>Coeficiente</label><input id="pcCoef" type="number" step="0.0001" value="1.1845"></div><div class="field"><label>Mano de obra</label><input type="number" step="0.01" value="0.38"></div><div class="field"><label>Materiales</label><input type="number" step="0.01" value="0.42"></div></div><div class="formula">P₁ = P₀ × [ a × (MO₁/MO₀) + b × (MAT₁/MAT₀) + c × (EQ₁/EQ₀) + d ]</div></article><aside><div class="result"><small>Precio actualizado</small><b id="pcResult">$1.835.975</b><span id="pcDelta">Variación estimada: +18,45%</span></div><div class="metricStrip" style="margin-top:14px;grid-template-columns:1fr"><div class="metric"><label>Base</label><b id="pcBaseOut">$1.550.000</b></div><div class="metric"><label>Coeficiente</label><b id="pcCoefOut">1,1845</b></div><div class="metric"><label>Diferencia</label><b id="pcDiffOut">$285.975</b></div></div></aside></div></div>
