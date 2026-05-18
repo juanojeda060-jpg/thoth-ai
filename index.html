@@ -630,17 +630,34 @@ body.dark .toggle-moon{ opacity:0!important; }
             <div style="margin-top:16px">
               <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px">Consultas sobre el pliego</div>
               <div style="display:flex;gap:8px;align-items:flex-end">
-                <textarea id="pliegoQuestion" placeholder="Ej: ¿Cuáles son las penalidades por mora? ¿Hay cláusula de ajuste? ¿Qué garantías se requieren?" style="flex:1;resize:none;min-height:70px;max-height:120px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px 12px;outline:none;font-size:13px;font-family:var(--body)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askPliego()}"></textarea>
-                <button class="btn primary" onclick="askPliego()" style="padding:10px 16px;border-radius:12px;align-self:flex-end">Consultar</button>
+                <textarea id="pliegoQuestion" placeholder="Ej: ¿Cuáles son las penalidades por mora? ¿Hay cláusula de ajuste? ¿Qué garantías se requieren?" style="flex:1;resize:none;min-height:70px;max-height:120px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px 12px;outline:none;font-size:13px;font-family:var(--body)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askPliegoLocal()}"></textarea>
+                <button class="btn primary" onclick="askPliegoLocal()" style="padding:10px 16px;border-radius:12px;align-self:flex-end">Consultar</button>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Generar checklist de requisitos obligatorios del pliego')">Checklist</button>
-                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Detectar riesgos contractuales y penalidades')">Riesgos</button>
-                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Extraer condiciones de pago y garantías')">Comercial</button>
-                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Resumen ejecutivo del pliego en máximo 300 palabras')">Resumen</button>
-                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Detectar polinómicas o cláusulas de ajuste de precio')">Polinómica</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliegoLocal('Generar checklist de requisitos obligatorios del pliego')">Checklist</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliegoLocal('Detectar riesgos contractuales y penalidades')">Riesgos</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliegoLocal('Extraer condiciones de pago y garantías')">Comercial</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliegoLocal('Resumen ejecutivo del pliego en máximo 300 palabras')">Resumen</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliegoLocal('Detectar polinómicas o cláusulas de ajuste de precio')">Polinómica</button>
               </div>
             </div>
+
+            <!-- RESPUESTA -->
+            <div id="pliegoRespuestaWrap" style="display:none;margin-top:20px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+                <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em">Respuesta del análisis</div>
+                <div style="display:flex;gap:6px">
+                  <button class="btn" onclick="descargarWord()" style="font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;gap:5px">
+                    <span style="font-size:14px">⬇</span> Word
+                  </button>
+                  <button class="btn" onclick="descargarPDF()" style="font-size:11px;padding:5px 12px;border:1px solid rgba(255,107,0,.3);border-radius:8px;color:var(--orange);background:rgba(255,107,0,.08);display:flex;align-items:center;gap:5px">
+                    <span style="font-size:14px">⬇</span> PDF
+                  </button>
+                </div>
+              </div>
+              <div id="pliegoRespuesta" style="border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:18px 20px;font-size:13px;line-height:1.7;color:var(--ink);white-space:pre-wrap;max-height:340px;overflow-y:auto"></div>
+            </div>
+
           </article>
       </div>
 
@@ -746,6 +763,39 @@ function askPliego(text){
   const inp=document.getElementById('pliegoQuestion');
   if(inp)inp.value='';
   ask(q);
+}
+function askPliegoLocal(text){
+  const q=text||(document.getElementById('pliegoQuestion')?.value?.trim());
+  if(!q)return;
+  const inp=document.getElementById('pliegoQuestion');
+  if(inp)inp.value='';
+  // Show loading in response area
+  const wrap=document.getElementById('pliegoRespuestaWrap');
+  const resp=document.getElementById('pliegoRespuesta');
+  wrap.style.display='block';
+  resp.textContent='Analizando...';
+  // Also send to chat
+  ask(q);
+  // Demo response after delay (replace with real API call when backend ready)
+  setTimeout(()=>{
+    const demo=`ANÁLISIS THOTH AI\n${'─'.repeat(40)}\n\nConsulta: "${q}"\n\nEste módulo está listo para conectar con la API de IA. La respuesta del análisis del pliego aparecerá aquí de forma automática una vez configurado el backend.\n\nPuede descargar este resultado en Word o PDF usando los botones superiores.`;
+    resp.textContent=demo;
+  },800);
+}
+function descargarWord(){
+  const content=document.getElementById('pliegoRespuesta')?.textContent||'Sin contenido';
+  const html=`<html><head><meta charset="utf-8"><title>Análisis THOTH AI</title></head><body style="font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:40px;max-width:800px"><h2 style="color:#ff6b00">THOTH AI — Análisis de Pliego</h2><pre style="white-space:pre-wrap;font-family:Arial,sans-serif">${escapeHtml(content)}</pre></body></html>`;
+  const blob=new Blob(['\ufeff'+html],{type:'application/msword'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='analisis_pliego_thoth.doc';a.click();
+  toast('Descargando Word...');
+}
+function descargarPDF(){
+  const content=document.getElementById('pliegoRespuesta')?.textContent||'Sin contenido';
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Análisis THOTH AI</title><style>body{font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:40px;max-width:800px;margin:0 auto}h2{color:#ff6b00}pre{white-space:pre-wrap;font-family:Arial,sans-serif}@media print{button{display:none}}</style></head><body><h2>THOTH AI — Análisis de Pliego</h2><pre>${escapeHtml(content)}</pre><br><button onclick="window.print()" style="background:#ff6b00;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px">Imprimir / Guardar PDF</button></body></html>`);
+  win.document.close();
+  toast('Abriendo vista de impresión PDF...');
 }
 function handleFiles(files){showModule('contratos');const list=document.getElementById('fileList');[...files].forEach(f=>{const item=document.createElement('div');item.className='fileItem';item.innerHTML=`<span>📎 ${escapeHtml(f.name)}</span><span class="statusPill pending">Cargado</span>`;list.appendChild(item)});ask(`Archivos cargados: ${[...files].map(f=>f.name).join(', ')}. Preparar análisis contractual.`)}
 function addContract(){showModule('contratos');const id='CT-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900+100));document.getElementById('contractList').insertAdjacentHTML('beforeend',`<div class="rowCard"><strong>${id}</strong><span><b>Cliente a definir</b><br><span class="meta">Ajuste a definir · Sin fecha</span></span><span class="mono">$0</span><span class="statusPill pending">Borrador</span><button class="btn" onclick="ask('Analizar ${id}')">Analizar</button></div>`);toast('Contrato borrador creado')}
