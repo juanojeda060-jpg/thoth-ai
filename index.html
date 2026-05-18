@@ -616,7 +616,41 @@ body.dark .toggle-moon{ opacity:0!important; }
 
       <div id="costos" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Estructuras de costo unitarias</h3><button class="btn primary" onclick="ask('Crear estructura de costos con datos cargados')">Crear con IA</button></div><p class="subtitle">Cargá HH, equipos, logística, combustibles, insumos, coeficientes y márgenes. THOTH AI trabaja con datos aportados e históricos.</p><table class="tableLite" style="margin-top:20px"><thead><tr><th>Ítem</th><th>Unidad</th><th>Costo base</th><th>Coef.</th><th>Precio sugerido</th><th>Estado</th></tr></thead><tbody><tr><td>Mano de obra</td><td>HH</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Equipo</td><td>Día</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr><tr><td>Logística</td><td>Km/Viaje</td><td>$0</td><td>—</td><td>Pendiente</td><td><span class="statusPill pending">Datos</span></td></tr></tbody></table></article></div>
 
-      <div id="pliegos" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Análisis documental</h3><button class="btn primary" onclick="triggerUpload()">Subir pliego</button></div><div class="workflow" style="margin-top:0"><button onclick="ask('Generar checklist del pliego cargado')"><b>Checklist</b><small>Requisitos obligatorios.</small></button><button onclick="ask('Detectar riesgos contractuales del pliego')"><b>Riesgos</b><small>Penalidades y cláusulas críticas.</small></button><button onclick="ask('Extraer condiciones comerciales del pliego')"><b>Comercial</b><small>Pagos, garantías y ajustes.</small></button><button onclick="ask('Resumen ejecutivo del pliego')"><b>Resumen</b><small>Máximo 300 palabras.</small></button><button onclick="ask('Detectar polinómicas o ajustes de precio')"><b>Polinómica</b><small>Índices y fórmula.</small></button></div></article></div>
+      <div id="pliegos" class="panel">
+        <div class="split">
+          <article class="editorialCard">
+            <div class="cardHead"><h3>Análisis documental</h3></div>
+            <div class="uploadDrop" id="pliegoDrop" style="cursor:pointer" onclick="triggerUpload()">
+              <label style="cursor:pointer;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700">
+                <span style="font-size:24px">↑</span> Subir pliego
+              </label>
+              <p class="subtitle" style="margin-top:6px;font-size:12px">PDF, Word, Excel. El sistema extraerá alcance, requisitos, penalidades, fechas y riesgos automáticamente.</p>
+              <input id="fileUploadPliegos" type="file" style="display:none" accept=".pdf,.doc,.docx,.xlsx" onchange="handlePliego(this.files)">
+              <div id="pliegoFileList" style="margin-top:10px;display:grid;gap:8px"></div>
+            </div>
+            <div style="margin-top:16px">
+              <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px">Consultas sobre el pliego</div>
+              <div style="display:flex;gap:8px;align-items:flex-end">
+                <textarea id="pliegoQuestion" placeholder="Ej: ¿Cuáles son las penalidades por mora? ¿Hay cláusula de ajuste? ¿Qué garantías se requieren?" style="flex:1;resize:none;min-height:70px;max-height:120px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px 12px;outline:none;font-size:13px;font-family:var(--body)" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askPliego()}"></textarea>
+                <button class="btn primary" onclick="askPliego()" style="padding:10px 16px;border-radius:12px;align-self:flex-end">Consultar</button>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Generar checklist de requisitos obligatorios del pliego')">Checklist</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Detectar riesgos contractuales y penalidades')">Riesgos</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Extraer condiciones de pago y garantías')">Comercial</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Resumen ejecutivo del pliego en máximo 300 palabras')">Resumen</button>
+                <button class="btn" style="font-size:11px;padding:5px 10px;border:1px solid var(--line);border-radius:8px" onclick="askPliego('Detectar polinómicas o cláusulas de ajuste de precio')">Polinómica</button>
+              </div>
+            </div>
+          </article>
+          <aside class="uploadDrop">
+            <label for="fileUpload">↑ Subir contratos / pliegos</label>
+            <p class="subtitle" style="margin-top:8px;font-size:12px">Archivos adicionales para análisis cruzado.</p>
+            <input id="fileUpload" type="file" multiple accept=".pdf,.doc,.docx,.xlsx,.xls,.csv,.mpp" onchange="handleFiles(this.files)">
+            <div class="fileList" id="fileList"><div class="fileItem"><span>📎 Contratos precargados demo</span><span class="statusPill ok">Activo</span></div></div>
+          </aside>
+        </div>
+      </div>
 
       <div id="polinomic" class="panel"><div class="split"><article class="editorialCard"><div class="cardHead"><h3>Matriz mensual de actualización</h3><button class="btn primary" onclick="calcPoli()">Calcular</button></div><div class="formGrid"><div class="field"><label>Contrato</label><select id="pcContract"><option>CT-2025-001 · YPF</option><option>CT-2025-002 · TGN</option><option>CT-2025-003 · PAE</option></select></div><div class="field"><label>Mes</label><input id="pcMonth" type="month" value="2025-03"></div><div class="field"><label>Monto base</label><input id="pcBase" type="number" value="1550000"></div><div class="field"><label>Coeficiente</label><input id="pcCoef" type="number" step="0.0001" value="1.1845"></div><div class="field"><label>Mano de obra</label><input type="number" step="0.01" value="0.38"></div><div class="field"><label>Materiales</label><input type="number" step="0.01" value="0.42"></div></div><div class="formula">P₁ = P₀ × [ a × (MO₁/MO₀) + b × (MAT₁/MAT₀) + c × (EQ₁/EQ₀) + d ]</div></article><aside><div class="result"><small>Precio actualizado</small><b id="pcResult">$1.835.975</b><span id="pcDelta">Variación estimada: +18,45%</span></div><div class="metricStrip" style="margin-top:14px;grid-template-columns:1fr"><div class="metric"><label>Base</label><b id="pcBaseOut">$1.550.000</b></div><div class="metric"><label>Coeficiente</label><b id="pcCoefOut">1,1845</b></div><div class="metric"><label>Diferencia</label><b id="pcDiffOut">$285.975</b></div></div></aside></div></div>
 
@@ -699,7 +733,28 @@ function renderActions(id){
 }
 function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('thoth-theme',document.body.classList.contains('dark')?'dark':'light')}
 (function(){if(localStorage.getItem('thoth-theme')==='dark')document.body.classList.add('dark');window.addEventListener('DOMContentLoaded',()=>renderActions('home'))})();
-function triggerUpload(){document.getElementById('fileUpload').click()}
+function triggerUpload(){
+  const pl=document.getElementById('fileUploadPliegos');
+  const fu=document.getElementById('fileUpload');
+  if(pl)pl.click(); else if(fu)fu.click();
+}
+function handlePliego(files){
+  const list=document.getElementById('pliegoFileList');
+  [...files].forEach(f=>{
+    const item=document.createElement('div');
+    item.className='fileItem';
+    item.innerHTML=`<span>📎 ${escapeHtml(f.name)}</span><span class="statusPill ok">Cargado</span>`;
+    list.appendChild(item);
+  });
+  toast('Pliego cargado. Realizá tu consulta.');
+}
+function askPliego(text){
+  const q=text||(document.getElementById('pliegoQuestion')?.value?.trim());
+  if(!q)return;
+  const inp=document.getElementById('pliegoQuestion');
+  if(inp)inp.value='';
+  ask(q);
+}
 function handleFiles(files){showModule('contratos');const list=document.getElementById('fileList');[...files].forEach(f=>{const item=document.createElement('div');item.className='fileItem';item.innerHTML=`<span>📎 ${escapeHtml(f.name)}</span><span class="statusPill pending">Cargado</span>`;list.appendChild(item)});ask(`Archivos cargados: ${[...files].map(f=>f.name).join(', ')}. Preparar análisis contractual.`)}
 function addContract(){showModule('contratos');const id='CT-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900+100));document.getElementById('contractList').insertAdjacentHTML('beforeend',`<div class="rowCard"><strong>${id}</strong><span><b>Cliente a definir</b><br><span class="meta">Ajuste a definir · Sin fecha</span></span><span class="mono">$0</span><span class="statusPill pending">Borrador</span><button class="btn" onclick="ask('Analizar ${id}')">Analizar</button></div>`);toast('Contrato borrador creado')}
 function ask(text){toggleAssistant(true);document.getElementById('prompt').value=text;sendMsg()}
