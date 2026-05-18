@@ -579,8 +579,17 @@ body.dark .toggle-moon{ opacity:0!important; }
                 </div>
               </div>
 
-            </div>
-            <div class="workflow" style="margin-top:14px;grid-template-columns:1fr 1fr;gap:8px">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;align-items:baseline">
+                  <span style="font-size:13px;font-weight:700">Otros</span>
+                  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$0 <b style="color:var(--ink)">0%</b></span>
+                </div>
+                <div style="height:28px;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.06);position:relative">
+                  <div style="width:0%;height:100%;background:linear-gradient(90deg,#444,#888);border-radius:6px"></div>
+                </div>
+              </div>
+
+            </div> style="margin-top:14px;grid-template-columns:1fr 1fr;gap:8px">
               <button onclick="showModule('contratos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Contratos</b><small>Cartera y vencimientos.</small></button>
               <button onclick="triggerUpload()" style="min-height:auto;padding:12px"><b style="font-size:12px">Subir archivo</b><small>PDF, Word, Excel.</small></button>
               <button onclick="showModule('pliegos')" style="min-height:auto;padding:12px"><b style="font-size:12px">Analizar pliego</b><small>Checklist y riesgos.</small></button>
