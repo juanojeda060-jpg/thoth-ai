@@ -244,7 +244,7 @@ body.dark .themeKnob{
 }
 
 
-.workspace{display:grid;grid-template-rows:auto 1fr;min-width:0;position:relative;z-index:1;height:100vh;overflow:auto;padding-bottom:80px}.header{
+.workspace{display:grid;grid-template-rows:auto 1fr;min-width:0;position:relative;z-index:1;height:100vh;overflow:auto;padding-bottom:0}.header{
   padding:12px 20px 10px;
   border-bottom:1px solid var(--line);
   display:grid;
@@ -263,8 +263,8 @@ body.dark .themeKnob{
 .btn.primary:hover{background:#2968c8;color:white}
 .btn.warn{color:var(--orange);background:rgba(255,107,0,.10);border:1px solid rgba(255,107,0,.18);padding:9px 13px}
 .btn.warn:hover{background:rgba(255,107,0,.16);color:var(--orange)}
-.stage{overflow:auto;padding:16px 20px 60px}.stage::-webkit-scrollbar,.chatBody::-webkit-scrollbar{width:7px}.stage::-webkit-scrollbar-thumb,.chatBody::-webkit-scrollbar-thumb{background:rgba(255,107,0,.35);border-radius:99px}.panel{display:none;animation:fade .2s}.panel.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px}.editorialCard.cut{border-radius:4px 28px 28px 28px;padding:16px;display:flex;flex-direction:column}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:160px;height:160px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
+.stage{overflow:auto;padding:16px 20px 16px}#home.panel.active{overflow:hidden}.stage::-webkit-scrollbar,.chatBody::-webkit-scrollbar{width:7px}.stage::-webkit-scrollbar-thumb,.chatBody::-webkit-scrollbar-thumb{background:rgba(255,107,0,.35);border-radius:99px}.panel{display:none;animation:fade .2s}.panel.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch;height:calc(100vh - 220px);max-height:580px}.editorialCard{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden;border-radius:22px 22px 22px 4px;display:flex;flex-direction:column}.editorialCard.cut{border-radius:4px 28px 28px 28px;padding:16px;display:flex;flex-direction:column}.editorialCard:before{content:"";position:absolute;inset:0 0 auto auto;width:160px;height:160px;background:linear-gradient(135deg,rgba(255,107,0,.18),transparent 65%);clip-path:polygon(0 0,100% 0,100% 100%)}
 .cardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px;position:relative}.cardHead h3{text-transform:uppercase;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--muted)}
 .bigMetric{font-size:52px;line-height:.9;letter-spacing:-.08em;font-weight:950;margin-top:12px}.bigMetric small{font-size:14px;letter-spacing:0;color:var(--muted);margin-left:6px}
 .metricStrip{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--paper)}.metric{padding:10px 12px;border-right:1px solid var(--line);text-align:center}.metric:last-child{border-right:0}.metric label{display:block;color:var(--muted);font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}.metric b{display:block;margin-top:4px;font-size:18px}
@@ -275,12 +275,16 @@ body.dark .themeKnob{
 .split{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px}.list{display:grid;gap:12px}.rowCard{border:1px solid var(--line);background:var(--panel);padding:16px;display:grid;grid-template-columns:130px 1fr 120px 120px auto;gap:14px;align-items:center;border-radius:18px 4px 18px 18px;transition:.18s}.rowCard:nth-child(even){border-radius:4px 18px 18px 18px}.rowCard:hover{transform:translateX(3px);border-color:rgba(255,107,0,.38)}.meta{color:var(--muted);font-size:13px}.mono{font-family:var(--mono)}
 .uploadDrop{border:1px dashed rgba(255,107,0,.36);background:rgba(255,107,0,.10);padding:22px;border-radius:22px 22px 4px 22px}.uploadDrop label{display:block;cursor:pointer;font-weight:900;font-size:18px}.uploadDrop input{display:none}.fileList{margin-top:14px;display:grid;gap:10px}.fileItem{display:flex;justify-content:space-between;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:13px;border-radius:12px}
 .formGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.field label{display:block;color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.field input,.field select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700}.field input:focus,.field select:focus{border-color:rgba(255,107,0,.5);box-shadow:0 0 0 4px rgba(255,107,0,.10)}
-.result{background:var(--ink);color:var(--panel);padding:22px;border-radius:22px 22px 4px 22px;margin-top:14px}body.dark .result{background:#f6f3ed;color:#0f0f10}.result small{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;opacity:.68}.result b{display:block;font-size:42px;letter-spacing:-.04em;margin-top:8px}.formula{font-family:var(--mono);color:var(--muted);line-height:1.7;padding:18px;border:1px solid var(--line);background:var(--paper);margin-top:18px;border-radius:16px}.tableLite{width:100%;border-collapse:collapse}.tableLite th{text-align:left;color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;padding:12px;border-bottom:1px solid var(--line)}.tableLite td{padding:14px 12px;border-bottom:1px solid var(--line)}
+select{background:var(--paper)!important;color:var(--ink)!important}select option{background:var(--paper);color:var(--ink)}
+.result{background:var(--ink);color:var(--panel);padding:22px;border-radius:22px 22px 4px 22px;margin-top:14px;text-align:center}body.dark .result{background:rgba(255,107,0,.12);color:var(--ink);border:1px solid rgba(255,107,0,.25)}.result small{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;opacity:.68}.result b{display:block;font-size:42px;letter-spacing:-.04em;margin-top:8px}.formula{font-family:var(--mono);color:var(--muted);line-height:1.7;padding:18px;border:1px solid var(--line);background:var(--paper);margin-top:18px;border-radius:16px}.tableLite{width:100%;border-collapse:collapse}.tableLite th{text-align:left;color:var(--muted);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;padding:12px;border-bottom:1px solid var(--line)}.tableLite td{padding:14px 12px;border-bottom:1px solid var(--line)}
 .alertItem{background:var(--panel);border:1px solid var(--line);padding:18px 20px;border-left:4px solid var(--orange);display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:12px;border-radius:0 12px 12px 0}
 .helpFab{position:fixed;right:28px;bottom:26px;z-index:140;border:0;background:var(--orange);color:#fff;width:62px;height:62px;border-radius:22px 22px 6px 22px;box-shadow:0 22px 42px rgba(255,107,0,.32);cursor:pointer;font-size:27px}.helpFab.is-open{background:var(--ink);transform:rotate(45deg)}.helpFab.is-open small{transform:rotate(-45deg)}.helpFab small{position:absolute;right:74px;top:10px;white-space:nowrap;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:12px;font-weight:900;box-shadow:var(--shadow)}
 .assistant{position:fixed;right:28px;bottom:98px;width:410px;height:min(630px,calc(100vh - 130px));background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);z-index:130;display:none;flex-direction:column;border-radius:26px 26px 6px 26px;overflow:hidden}.assistant.open{display:flex}.chatHead{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}.chatHead h3{font-size:16px}.chatHead p{color:var(--muted);font-size:13px;margin-top:4px}.close{width:36px;height:36px;border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;border-radius:12px;font-weight:900}.chatBody{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.msg{padding:13px 14px;border:1px solid var(--line);border-radius:16px 16px 16px 4px;line-height:1.45;font-size:13px;background:var(--paper)}.msg.user{align-self:flex-end;border-color:rgba(255,107,0,.30);background:rgba(255,107,0,.10);border-radius:16px 16px 4px 16px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 12px}.quick button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px;cursor:pointer;font-weight:800}.chatInput{border-top:1px solid var(--line);padding:14px;display:flex;gap:10px}.chatInput textarea{flex:1;resize:none;min-height:44px;max-height:110px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:12px;outline:none}.send{width:48px;border:0;background:var(--orange);color:white;cursor:pointer;border-radius:14px 14px 4px 14px;font-size:20px}.toastBox{position:fixed;right:28px;top:24px;z-index:100;display:grid;gap:10px}.toast{background:var(--panel);border:1px solid rgba(255,107,0,.32);box-shadow:var(--shadow);padding:12px 14px;border-radius:12px;font-weight:800}
 @media(max-width:1100px){.app{grid-template-columns:76px 1fr}.rail{padding:14px 8px}.workflow{grid-template-columns:repeat(2,1fr)}.heroGrid,.split{grid-template-columns:1fr}.metricStrip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){body{overflow:auto}.app{height:auto;min-height:100vh;grid-template-columns:1fr}.rail{display:none}.header{grid-template-columns:1fr}.actions{justify-content:flex-start}.stage{padding:20px}.title{font-size:32px}.workflow{grid-template-columns:1fr}.metricStrip,.formGrid{grid-template-columns:1fr}.rowCard{grid-template-columns:1fr}.assistant{right:12px;bottom:88px;width:calc(100vw - 24px)}.helpFab{right:16px;bottom:16px}}
+
+body.dark .poli-section-header{background:rgba(255,255,255,.04)!important;border-bottom-color:rgba(255,255,255,.08)!important}
+body.dark .poli-table-row{border-bottom-color:rgba(255,255,255,.06)!important}
 
 /* Limpieza solicitada: menú lateral sin íconos y acciones superiores reducidas */
 .app.sidebar-open .iconBtn{
@@ -459,6 +463,8 @@ body.dark .toggle-moon{ opacity:0!important; }
 </head>
 <body>
 
+<button id="headerHomeBtn" onclick="showModule('home')" style="display:none;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,107,0,.4);background:rgba(255,107,0,.08);color:var(--orange);cursor:pointer;transition:.16s;white-space:nowrap;position:fixed;top:26px;right:116px;z-index:99998" onmouseover="this.style.background='rgba(255,107,0,.18)'" onmouseout="this.style.background='rgba(255,107,0,.08)'">← Inicio</button>
+
 <button class="globalThemeToggle" onclick="toggleTheme()" aria-label="Cambiar modo claro/oscuro">
   <span class="themeTrack">
     <!-- sol: visible en dark mode (zona izquierda, knob se fue a la derecha) -->
@@ -497,11 +503,6 @@ body.dark .toggle-moon{ opacity:0!important; }
     <button class="iconBtn" data-mod="cashflow" onclick="showModule('cashflow')"><span>Proyección</span></button>
     <button class="iconBtn" data-mod="evm" onclick="showModule('evm')"><span>EVM</span></button>
     <button class="iconBtn" data-mod="alertas" onclick="showModule('alertas')"><span>Alertas</span></button>
-
-    <div class="railBottom">
-      <div class="railSection">Accesos</div>
-      <button class="iconBtn uploadOnly" onclick="triggerUpload()"><span>Subir archivo</span></button>
-    </div>
   </aside>
 
   <main class="workspace">
@@ -511,7 +512,7 @@ body.dark .toggle-moon{ opacity:0!important; }
         <h1 class="title" id="pageTitle">Centro contractual inteligente</h1>
         <p class="subtitle" id="pageSub">Gestión de contratos, pliegos, costos unitarios, EVM, proyección y polinómicas desde un espacio único, sin tablero saturado.</p>
       </div>
-      <div class="actions headerTheme">
+      <div class="actions headerTheme" style="display:flex;align-items:center;gap:10px">
       </div>
     </header>
 
@@ -520,14 +521,30 @@ body.dark .toggle-moon{ opacity:0!important; }
         <div class="heroGrid">
           <article class="editorialCard">
             <div class="cardHead"><h3>Vista ejecutiva</h3><span class="statusPill pending">2 riesgos activos</span></div>
-            <div class="bigMetric">$3.54M<small>bajo gestión</small></div>
-            <div class="metricStrip">
-              <div class="metric"><label>Contratos</label><b>12</b></div>
-              <div class="metric"><label>Próx. venc.</label><b>60d</b></div>
-              <div class="metric"><label>Margen prom.</label><b>23.1%</b></div>
-              <div class="metric"><label>CPI cartera</label><b>0.94</b></div>
+            <div class="bigMetric" style="font-size:58px;margin-top:8px">$3.54M<small style="font-size:13px;font-weight:400;color:var(--muted);margin-left:8px;letter-spacing:0">bajo gestión</small></div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px">
+              <button onclick="showModule('contratos')" style="border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:12px 10px;border-radius:12px;cursor:pointer;text-align:left;transition:.16s;display:flex;flex-direction:column;gap:4px" onmouseover="this.style.borderColor='rgba(255,107,0,.5)';this.style.background='rgba(255,107,0,.08)'" onmouseout="this.style.borderColor='var(--line)';this.style.background='var(--paper)'">
+                <span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Contratos activos</span>
+                <span style="font-size:26px;font-weight:900;letter-spacing:-.04em;line-height:1">12</span>
+                <span style="font-size:10px;color:var(--orange);font-weight:600">Ver cartera →</span>
+              </button>
+              <button onclick="showModule('alertas')" style="border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:12px 10px;border-radius:12px;cursor:pointer;text-align:left;transition:.16s;display:flex;flex-direction:column;gap:4px" onmouseover="this.style.borderColor='rgba(255,107,0,.5)';this.style.background='rgba(255,107,0,.08)'" onmouseout="this.style.borderColor='var(--line)';this.style.background='var(--paper)'">
+                <span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Próx. vencimiento</span>
+                <span style="font-size:26px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--warn)">60d</span>
+                <span style="font-size:10px;color:var(--orange);font-weight:600">Ver alertas →</span>
+              </button>
+              <button onclick="showModule('costos')" style="border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:12px 10px;border-radius:12px;cursor:pointer;text-align:left;transition:.16s;display:flex;flex-direction:column;gap:4px" onmouseover="this.style.borderColor='rgba(255,107,0,.5)';this.style.background='rgba(255,107,0,.08)'" onmouseout="this.style.borderColor='var(--line)';this.style.background='var(--paper)'">
+                <span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Margen neto prom.</span>
+                <span style="font-size:22px;font-weight:900;letter-spacing:-.04em;line-height:1">23.1%</span>
+                <span style="font-size:10px;color:var(--muted);font-weight:500">≈ $816K / contrato</span>
+              </button>
+              <button onclick="showModule('evm')" style="border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:12px 10px;border-radius:12px;cursor:pointer;text-align:left;transition:.16s;display:flex;flex-direction:column;gap:4px" onmouseover="this.style.borderColor='rgba(255,107,0,.5)';this.style.background='rgba(255,107,0,.08)'" onmouseout="this.style.borderColor='var(--line)';this.style.background='var(--paper)'">
+                <span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">CPI Cartera (EVM)</span>
+                <span style="font-size:26px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#e05252">0.94</span>
+                <span style="font-size:10px;color:#e05252;font-weight:600">Bajo óptimo →</span>
+              </button>
             </div>
-            <div class="warningBanner" style="flex-direction:column;align-items:flex-start;gap:8px">
+            <div class="warningBanner" style="flex-direction:column;align-items:flex-start;gap:8px;margin-top:10px">
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%">
     <div><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px">Empresa</span><b style="font-size:12px">Pan American Energy</b></div>
     <div><span style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px">Contrato</span><b style="font-size:12px">Mantenimiento Industrial · PAE-Mant-002</b></div>
@@ -586,10 +603,10 @@ body.dark .toggle-moon{ opacity:0!important; }
             </div>
             <div class="workflow" style="margin-top:8px;grid-template-columns:1fr 1fr;gap:6px">
               <button onclick="showModule('contratos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Contratos</b><small style="font-size:10px">Cartera y vencimientos.</small></button>
-              <button onclick="triggerUpload()" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Subir archivo</b><small style="font-size:10px">PDF, Word, Excel.</small></button>
+              <button onclick="showModule('cashflow')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Proyección</b><small style="font-size:10px">Flujo de caja.</small></button>
               <button onclick="showModule('pliegos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Analizar pliego</b><small style="font-size:10px">Checklist y riesgos.</small></button>
               <button onclick="showModule('costos')" style="min-height:auto;padding:8px 10px"><b style="font-size:11px">Costos IA</b><small style="font-size:10px">Estructuras unitarias.</small></button>
-              <button onclick="showModule('polinomic')" style="min-height:auto;padding:8px 10px;grid-column:1/-1"><b style="font-size:11px">Polinómicas</b><small style="font-size:10px">Actualización contractual mensual.</small></button>
+              <button onclick="showModule('evm')" style="min-height:auto;padding:8px 10px;grid-column:1/-1"><b style="font-size:11px">EVM</b><small style="font-size:10px">Control de gestión y performance.</small></button>
             </div>
           </article>
         </div>
@@ -647,11 +664,11 @@ body.dark .toggle-moon{ opacity:0!important; }
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
                 <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em">Respuesta del análisis</div>
                 <div style="display:flex;gap:6px">
-                  <button class="btn" onclick="descargarWord()" style="font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;gap:5px">
-                    <span style="font-size:14px">⬇</span> Word
+                  <button class="btn" onclick="copiarRespuesta()" style="font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;gap:5px">
+                    <span>⎘</span> Copiar
                   </button>
-                  <button class="btn" onclick="descargarPDF()" style="font-size:11px;padding:5px 12px;border:1px solid rgba(255,107,0,.3);border-radius:8px;color:var(--orange);background:rgba(255,107,0,.08);display:flex;align-items:center;gap:5px">
-                    <span style="font-size:14px">⬇</span> PDF
+                  <button class="btn" onclick="descargarWord()" style="font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;gap:5px">
+                    <span>⬇</span> Word
                   </button>
                 </div>
               </div>
@@ -661,9 +678,216 @@ body.dark .toggle-moon{ opacity:0!important; }
           </article>
       </div>
 
-      <div id="polinomic" class="panel"><div class="split"><article class="editorialCard"><div class="cardHead"><h3>Matriz mensual de actualización</h3><button class="btn primary" onclick="calcPoli()">Calcular</button></div><div class="formGrid"><div class="field"><label>Contrato</label><select id="pcContract"><option>CT-2025-001 · YPF</option><option>CT-2025-002 · TGN</option><option>CT-2025-003 · PAE</option></select></div><div class="field"><label>Mes</label><input id="pcMonth" type="month" value="2025-03"></div><div class="field"><label>Monto base</label><input id="pcBase" type="number" value="1550000"></div><div class="field"><label>Coeficiente</label><input id="pcCoef" type="number" step="0.0001" value="1.1845"></div><div class="field"><label>Mano de obra</label><input type="number" step="0.01" value="0.38"></div><div class="field"><label>Materiales</label><input type="number" step="0.01" value="0.42"></div></div><div class="formula">P₁ = P₀ × [ a × (MO₁/MO₀) + b × (MAT₁/MAT₀) + c × (EQ₁/EQ₀) + d ]</div></article><aside><div class="result"><small>Precio actualizado</small><b id="pcResult">$1.835.975</b><span id="pcDelta">Variación estimada: +18,45%</span></div><div class="metricStrip" style="margin-top:14px;grid-template-columns:1fr"><div class="metric"><label>Base</label><b id="pcBaseOut">$1.550.000</b></div><div class="metric"><label>Coeficiente</label><b id="pcCoefOut">1,1845</b></div><div class="metric"><label>Diferencia</label><b id="pcDiffOut">$285.975</b></div></div></aside></div></div>
+      <div id="polinomic" class="panel"><div class="split"><article class="editorialCard"><div class="cardHead"><h3>Evolución contractual por período</h3><button class="btn primary" onclick="calcPoli()">Ver evolución</button></div>
 
-      <div id="cashflow" class="panel"><article class="editorialCard"><div class="cardHead"><h3>Proyección financiera</h3><button class="btn primary" onclick="ask('Analizar cash flow proyectado')">Analizar caja</button></div><div class="metricStrip"><div class="metric"><label>Saldo actual</label><b>$487K</b></div><div class="metric"><label>Mes crítico</label><b>Mar-25</b></div><div class="metric"><label>Capital trabajo</label><b>$220K</b></div><div class="metric"><label>Cobertura</label><b>2.1x</b></div></div></article></div>
+<div class="formGrid">
+  <div class="field">
+    <label>Empresa</label>
+    <select id="pcEmpresa" onchange="filtrarContratos()">
+      <option value="">— Seleccionar empresa —</option>
+      <option value="YPF">YPF S.A.</option>
+      <option value="PAE">Pan American Energy</option>
+      <option value="TGN">TGN</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Contrato</label>
+    <select id="pcContract" onchange="cargarDatosContrato()">
+      <option value="">— Seleccionar contrato —</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Fecha base (desde)</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <select id="pcFechaBaseMes" style="width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700">
+        <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option>
+        <option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+        <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option>
+        <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+      </select>
+      <select id="pcFechaBaseAnio" style="width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700"></select>
+    </div>
+  </div>
+  <div class="field">
+    <label>Fecha actual (hasta)</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <select id="pcFechaActualMes" style="width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700">
+        <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option>
+        <option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+        <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option>
+        <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+      </select>
+      <select id="pcFechaActualAnio" style="width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:13px 12px;border-radius:10px;outline:none;font-weight:700"></select>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;border:1px solid var(--line);border-radius:12px;overflow:hidden">
+  <div style="background:rgba(255,107,0,.07);padding:10px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)" class="poli-section-header">Evolución por componente</div>
+  <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead>
+      <tr>
+        <th style="padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1px solid var(--line);font-weight:500">Componente</th>
+        <th style="padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;border-bottom:1px solid var(--line);font-weight:500;border-left:1px solid var(--line)">Ponderación</th>
+        <th style="padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;border-bottom:1px solid var(--line);font-weight:500;border-left:1px solid var(--line)">Var. %</th>
+        <th style="padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;border-bottom:1px solid var(--line);font-weight:500;border-left:1px solid var(--line)">Aporte al coef.</th>
+      </tr>
+    </thead>
+    <tbody id="poliTabla">
+      <tr><td colspan="4" style="padding:20px;text-align:center;color:var(--muted);font-size:13px">Seleccionar empresa y contrato para ver la evolución</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="formula" style="margin-top:14px">P₁ = P₀ × [ a × (MO₁/MO₀) + b × (MAT₁/MAT₀) + c × (EQ₁/EQ₀) + d ]</div>
+
+</article>
+<aside style="display:flex;flex-direction:column;gap:0">
+  <div class="result" id="poliResult" style="opacity:.4;flex-shrink:0"><small>Coeficiente actualizado</small><b id="pcResult" style="font-size:52px">—</b><span id="pcDelta" style="display:block;margin-top:8px;font-size:14px;opacity:.8"></span></div>
+  <div style="flex:1;border:1px solid var(--line);border-radius:0 0 12px 12px;overflow:hidden;margin-top:-1px">
+    <div style="display:grid;gap:0">
+      <div style="padding:14px 18px;border-bottom:1px solid var(--line)">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Empresa</div>
+        <div id="pcEmpresaOut" style="font-size:14px;font-weight:700">—</div>
+      </div>
+      <div style="padding:14px 18px;border-bottom:1px solid var(--line)">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Contrato</div>
+        <div id="pcContratoOut" style="font-size:12px;font-weight:600;line-height:1.4">—</div>
+      </div>
+      <div style="padding:14px 18px;border-bottom:1px solid var(--line)">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Período analizado</div>
+        <div id="pcPeriodoOut" style="font-size:13px;font-weight:600;font-family:var(--mono)">—</div>
+      </div>
+      <div style="padding:14px 18px;border-bottom:1px solid var(--line)">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Coeficiente total</div>
+        <div id="pcCoefOut" style="font-size:24px;font-weight:700;font-family:var(--mono)">—</div>
+      </div>
+      <div style="padding:14px 18px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Variación total</div>
+        <div id="pcVarTotal" style="font-size:24px;font-weight:700;font-family:var(--mono);color:var(--ok)">—</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:none"><b id="pcVarMO"></b><b id="pcVarMAT"></b><b id="pcVarEQ"></b></div>
+  <button class="btn warn" onclick="ask('Analizar la evolución polinómica calculada entre períodos y sugerir acciones contractuales')" style="width:100%;margin-top:12px;padding:10px">Analizar con IA</button>
+</aside>
+</div></div>
+
+      <div id="cashflow" class="panel">
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- TITLE + CONTROLS -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">INDIO SRL · CUIT 30-71816942-5 · Pesos argentinos</div>
+            <div style="font-size:22px;font-weight:800;letter-spacing:-.02em">Proyección Financiera</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px">
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">AÑO</span>
+              <select id="cfAnio" onchange="filtrarCashflow()" style="background:var(--paper);border:none;outline:none;font-family:var(--mono);font-size:11px;color:var(--ink);cursor:pointer">
+                <option value="2024">2024</option><option value="2025" selected>2025</option><option value="2026">2026</option>
+              </select>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px">
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">DESDE</span>
+              <select id="cfDesde" onchange="filtrarCashflow()" style="background:var(--paper);border:none;outline:none;font-family:var(--mono);font-size:11px;color:var(--ink);cursor:pointer">
+                <option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option>
+                <option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option>
+                <option value="6">Julio</option><option value="7">Agosto</option><option value="8">Septiembre</option>
+                <option value="9">Octubre</option><option value="10">Noviembre</option><option value="11">Diciembre</option>
+              </select>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:6px">HASTA</span>
+              <select id="cfHasta" onchange="filtrarCashflow()" style="background:var(--paper);border:none;outline:none;font-family:var(--mono);font-size:11px;color:var(--ink);cursor:pointer">
+                <option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option>
+                <option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option>
+                <option value="6">Julio</option><option value="7">Agosto</option><option value="8">Septiembre</option>
+                <option value="9">Octubre</option><option value="10">Noviembre</option><option value="11" selected>Diciembre</option>
+              </select>
+            </div>
+            <a href="INDIO_SRL_Proyeccion_Financiera_2025.xlsx" download class="btn" style="display:flex;align-items:center;gap:6px;border:1px solid var(--line);padding:7px 14px;border-radius:8px;text-decoration:none;color:var(--ink)"><span>⬇</span><span style="font-family:var(--mono);font-size:11px">Excel</span></a>
+            <button class="btn warn" onclick="ask('Analizar proyección financiera INDIO SRL 2025: flujo operativo, inversiones, financiamiento, meses críticos.')" style="padding:7px 14px;border-radius:8px">Analizar con IA</button>
+          </div>
+        </div>
+
+        <!-- KPI CARDS -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+          <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;border-top:3px solid #3dbe8c">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Total Ingresos</div>
+            <div id="kpiIngresos" style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink)">$425.3M</div>
+            <div style="font-size:11px;color:#3dbe8c;margin-top:4px">Flujo operativo</div>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;border-top:3px solid #e05252">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Total Egresos</div>
+            <div id="kpiEgresos" style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink)">($86.6M)</div>
+            <div style="font-size:11px;color:#e05252;margin-top:4px">IVA + Imp. Renta</div>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;border-top:3px solid #ff6b00">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Flujo Operativo Neto</div>
+            <div id="kpiFlujo" style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink)">+$351.5M</div>
+            <div style="font-size:11px;color:#ff6b00;margin-top:4px">Acumulado período</div>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;border-top:3px solid #d4892a">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Imp. Renta (Dic)</div>
+            <div style="font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink)">($12.8M)</div>
+            <div style="font-size:11px;color:#d4892a;margin-top:4px">Provisión recomendada</div>
+          </div>
+        </div>
+
+        <!-- 3-LINE CHART -->
+        <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Flujo de caja por categoría</div>
+              <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:3px;background:#ff6b00;border-radius:2px"></div><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">Operativo</span></div>
+                <div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:3px;background:#4a90d9;border-radius:2px;background:repeating-linear-gradient(90deg,#4a90d9 0,#4a90d9 6px,transparent 6px,transparent 10px)"></div><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">Inversión</span></div>
+                <div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:3px;background:#3dbe8c;border-radius:2px;background:repeating-linear-gradient(90deg,#3dbe8c 0,#3dbe8c 4px,transparent 4px,transparent 8px)"></div><span style="font-family:var(--mono);font-size:10px;color:var(--muted)">Financiero</span></div>
+              </div>
+            </div>
+            <div style="display:flex;background:rgba(0,0,0,.08);border-radius:6px;padding:2px;gap:2px" id="cfPeriodBtns">
+              <button onclick="setCfPeriod(0,5,this)" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:none;cursor:pointer;background:transparent;color:var(--muted)">6M</button>
+              <button onclick="setCfPeriod(0,9,this)" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:none;cursor:pointer;background:#ff6b00;color:#fff">Año</button>
+              <button onclick="setCfPeriod(0,11,this)" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:none;cursor:pointer;background:transparent;color:var(--muted)">Todo</button>
+            </div>
+          </div>
+          <div style="position:relative">
+            <svg id="cfSvg" width="100%" viewBox="0 0 900 220" preserveAspectRatio="none" style="display:block;overflow:visible"></svg>
+            <div id="cfTooltip" style="display:none;position:absolute;background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:11px;pointer-events:none;z-index:10;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3)"></div>
+            <div id="cfXLabels" style="display:flex;margin-top:6px"></div>
+          </div>
+        </div>
+
+        <!-- RUBROS -->
+        <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <div style="padding:14px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Ingresos por rubro</div>
+          <div style="padding:16px 18px;display:grid;gap:12px">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:700">🏨 Hotelería</span><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">~$394.8M <b style="color:var(--ink)">92.8%</b></span></div>
+              <div style="height:18px;border-radius:5px;background:rgba(0,0,0,.06);overflow:hidden"><div style="width:92.8%;height:100%;background:linear-gradient(90deg,#ff6b00,#ffaa55);border-radius:5px"></div></div>
+              <div style="font-size:10px;color:var(--muted);margin-top:4px">Techint, PECOM, SUREN, PRODENG, SERVIPET, TACKER</div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:700">💧 Agua</span><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">~$30.5M <b style="color:var(--ink)">7.2%</b></span></div>
+              <div style="height:18px;border-radius:5px;background:rgba(0,0,0,.06);overflow:hidden"><div style="width:7.2%;height:100%;background:linear-gradient(90deg,#c95000,#ff8c40);border-radius:5px"></div></div>
+              <div style="font-size:10px;color:var(--muted);margin-top:4px">KOMPASS, AGS, 360 BB SAS, LIMARDO</div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:700;color:var(--muted)">🚛 Transporte</span><span style="font-family:var(--mono);font-size:11px;color:var(--muted)">$0 — 0%</span></div>
+              <div style="height:18px;border-radius:5px;background:rgba(0,0,0,.06)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALERTA -->
+        <div style="background:rgba(212,137,42,.08);border:1px solid rgba(212,137,42,.25);border-left:4px solid #d4892a;border-radius:0 8px 8px 0;padding:12px 16px;display:flex;gap:10px">
+          <span style="color:#d4892a;font-size:16px;flex-shrink:0">⚠</span>
+          <div style="font-size:12px;line-height:1.6"><strong>Alertas detectadas:</strong> Septiembre cae 32% respecto a Agosto. Noviembre y Diciembre sin ingresos proyectados. Impuesto a la Renta $12.8M vence Diciembre — provisión recomendada desde Octubre. Flujo de Inversión y Financiamiento sin registros 2025.</div>
+        </div>
+
+        </div>
+      </div>
+
 
       <div id="evm" class="panel"><article class="editorialCard"><div class="cardHead"><h3>EVM / Control</h3><button class="btn primary" onclick="ask('Calcular EVM completo')">Calcular EVM</button></div><div class="metricStrip"><div class="metric"><label>CPI</label><b style="color:var(--danger)">0.82</b></div><div class="metric"><label>SPI</label><b style="color:var(--warn)">0.91</b></div><div class="metric"><label>EAC</label><b>$1.34M</b></div><div class="metric"><label>Acción</label><b>Alta</b></div></div><div class="warningBanner"><div><b>PAE-Mant-002:</b> sobrecosto proyectado y atraso. Requiere plan correctivo.</div><button class="btn warn" onclick="ask('Generar plan correctivo CPI menor a 1')">Plan correctivo</button></div></article></div>
 
@@ -735,7 +959,11 @@ function toggleSidebar(){
   });
 })();
 const cfg={home:{title:'Centro contractual inteligente',eyebrow:'THOTH AI / Contract Studio',sub:'Gestión de contratos, pliegos, costos unitarios, EVM, proyección y polinómicas desde un espacio único, sin tablero saturado.',quick:['Resumen cartera','Alertas críticas','Vencimientos','Reporte ejecutivo'],actions:[['Subir','triggerUpload',''],['Nuevo','addContract',''],['Riesgos','ask','Analizar riesgos contractuales activos','warn'],['Reporte','ask','Generar reporte ejecutivo de contratos','primary']]},contratos:{title:'Contratos activos',eyebrow:'THOTH AI / Gestión contractual',sub:'Cartera contractual con estado, vencimientos, ajustes y acciones ejecutivas.',quick:['Analizar contrato','Resumen','Riesgos','Vencimientos'],actions:[['Subir','triggerUpload',''],['Nuevo','addContract',''],['Riesgos','ask','Analizar riesgos contractuales activos','warn'],['Reporte','ask','Generar reporte contractual ejecutivo','primary']]},costos:{title:'Costos unitarios con IA',eyebrow:'THOTH AI / Costos',sub:'Estructuras unitarias alimentadas por tus datos: HH, equipos, logística, insumos, coeficientes y margen.',quick:['Costos IA','Margen objetivo','Comparar históricos','Pricing'],actions:[['Subir','triggerUpload',''],['Crear estructura','ask','Crear estructura de costos con datos cargados','primary'],['Pricing','ask','Sugerir pricing dinámico','warn']]},pliegos:{title:'Lectura de pliegos',eyebrow:'THOTH AI / Análisis documental',sub:'Extracción ejecutiva de alcance, requisitos, garantías, penalidades, fechas y riesgos contractuales.',quick:['Checklist','Riesgos','Condiciones pago','Resumen'],actions:[['Subir','triggerUpload',''],['Checklist','ask','Generar checklist del pliego cargado','primary'],['Riesgos','ask','Detectar riesgos contractuales del pliego','warn']]},polinomic:{title:'Polinómicas',eyebrow:'THOTH AI / Actualización contractual',sub:'Simulador de actualización mensual, coeficientes, índices y trazabilidad de precio contractual.',quick:['Calcular polinómica','Revisar fórmula','Explicar variación','Reporte ajuste'],actions:[['Subir','triggerUpload',''],['Calcular','calcPoli','','primary'],['Analizar IA','ask','Analizar actualización polinómica',''],['Crear alerta','ask','Crear alerta de actualización contractual','warn']]},cashflow:{title:'Proyección financiera',eyebrow:'THOTH AI / Cash Flow',sub:'Evaluación de caja, ingresos, egresos, meses críticos y necesidad de capital de trabajo.',quick:['Déficit Mar-25','Capital trabajo','Liquidez','Reporte'],actions:[['Subir','triggerUpload',''],['Analizar caja','ask','Analizar cash flow proyectado','primary'],['Capital trabajo','ask','Evaluar necesidad de capital de trabajo','warn']]},evm:{title:'EVM / Control de gestión',eyebrow:'THOTH AI / Performance',sub:'Seguimiento de CPI, SPI, EV, PV, AC, EAC, ETC y desvíos de plazo/costo.',quick:['Calcular EVM','CPI/SPI','Plan correctivo','Forecast'],actions:[['Subir','triggerUpload',''],['Calcular EVM','ask','Calcular EVM completo','primary'],['Plan correctivo','ask','Generar plan correctivo CPI menor a 1','warn']]},alertas:{title:'Alertas contractuales',eyebrow:'THOTH AI / Seguimiento',sub:'Vencimientos, riesgos, índices pendientes y acciones preventivas.',quick:['Alertas críticas','Vencimientos','Índices pendientes','Riesgos'],actions:[['Nueva alerta','ask','Crear nueva alerta contractual','primary'],['Críticas','ask','Listar alertas críticas','warn']]}};
-function showModule(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.iconBtn[data-mod]').forEach(b=>b.classList.toggle('active',b.dataset.mod===id));const c=cfg[id];document.getElementById('pageTitle').textContent=c.title;document.getElementById('eyebrow').textContent=c.eyebrow;document.getElementById('pageSub').textContent=c.sub;document.getElementById('assistantText').textContent=c.sub;renderActions(id)}
+function showModule(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.iconBtn[data-mod]').forEach(b=>b.classList.toggle('active',b.dataset.mod===id));const c=cfg[id];document.getElementById('pageTitle').textContent=c.title;document.getElementById('eyebrow').textContent=c.eyebrow;document.getElementById('pageSub').textContent=c.sub;document.getElementById('assistantText').textContent=c.sub;renderActions(id);if(id==='cashflow'){filtrarCashflow();}
+// Show/hide home button
+const homeBtn=document.getElementById('headerHomeBtn');
+if(homeBtn)homeBtn.style.display=id==='home'?'none':'flex';
+}
 function renderActions(id){
   const quick=document.getElementById('quickActions');
   if(quick && cfg[id]) quick.innerHTML=cfg[id].quick.map(x=>`<button onclick="ask('${x}')">${x}</button>`).join('');
@@ -764,38 +992,58 @@ function askPliego(text){
   if(inp)inp.value='';
   ask(q);
 }
-function askPliegoLocal(text){
+async function askPliegoLocal(text){
   const q=text||(document.getElementById('pliegoQuestion')?.value?.trim());
   if(!q)return;
   const inp=document.getElementById('pliegoQuestion');
-  if(inp)inp.value='';
-  // Show loading in response area
+  if(inp){inp.value='';inp.style.height='auto';}
   const wrap=document.getElementById('pliegoRespuestaWrap');
   const resp=document.getElementById('pliegoRespuesta');
   wrap.style.display='block';
-  resp.textContent='Analizando...';
-  // Also send to chat
-  ask(q);
-  // Demo response after delay (replace with real API call when backend ready)
-  setTimeout(()=>{
-    const demo=`ANÁLISIS THOTH AI\n${'─'.repeat(40)}\n\nConsulta: "${q}"\n\nEste módulo está listo para conectar con la API de IA. La respuesta del análisis del pliego aparecerá aquí de forma automática una vez configurado el backend.\n\nPuede descargar este resultado en Word o PDF usando los botones superiores.`;
-    resp.textContent=demo;
-  },800);
+  resp.innerHTML='<span style="color:var(--muted);font-style:italic">Analizando consulta...</span>';
+  resp.scrollIntoView({behavior:'smooth',block:'nearest'});
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`Eres THOTH AI, sistema experto en análisis de pliegos técnicos y comerciales para Oil & Gas, construcción e industria pesada. Responde en español con formato ejecutivo: usa títulos en mayúsculas, listas con guiones y secciones claras. Sé conciso y preciso. Si no hay pliego cargado, indica que analizarás en base a la consulta del usuario.`,
+        messages:[{role:'user',content:q}]
+      })
+    });
+    const data=await res.json();
+    const txt=(data.content||[]).map(b=>b.text||'').join('');
+    // Format: bold titles, line breaks
+    const formatted=txt
+      .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\n/g,'<br>');
+    resp.innerHTML=formatted;
+    window._pliegoTexto=txt;
+  }catch(err){
+    resp.innerHTML='<span style="color:var(--danger)">Error al conectar con la IA. Verificá la API key.</span>';
+    window._pliegoTexto='';
+  }
 }
 function descargarWord(){
-  const content=document.getElementById('pliegoRespuesta')?.textContent||'Sin contenido';
-  const html=`<html><head><meta charset="utf-8"><title>Análisis THOTH AI</title></head><body style="font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:40px;max-width:800px"><h2 style="color:#ff6b00">THOTH AI — Análisis de Pliego</h2><pre style="white-space:pre-wrap;font-family:Arial,sans-serif">${escapeHtml(content)}</pre></body></html>`;
+  const content=window._pliegoTexto||document.getElementById('pliegoRespuesta')?.innerText||'Sin contenido';
+  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>Análisis THOTH AI</title></head><body style="font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:40px;max-width:800px"><h2 style="color:#ff6b00;font-family:Arial">THOTH AI — Análisis de Pliego</h2><hr style="border-color:#ff6b00"><pre style="white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px">${escapeHtml(content)}</pre><br><p style="color:#999;font-size:11px">Generado por THOTH AI Enterprise</p></body></html>`;
   const blob=new Blob(['\ufeff'+html],{type:'application/msword'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='analisis_pliego_thoth.doc';a.click();
   toast('Descargando Word...');
 }
 function descargarPDF(){
-  const content=document.getElementById('pliegoRespuesta')?.textContent||'Sin contenido';
+  const content=window._pliegoTexto||document.getElementById('pliegoRespuesta')?.innerText||'Sin contenido';
   const win=window.open('','_blank');
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Análisis THOTH AI</title><style>body{font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:40px;max-width:800px;margin:0 auto}h2{color:#ff6b00}pre{white-space:pre-wrap;font-family:Arial,sans-serif}@media print{button{display:none}}</style></head><body><h2>THOTH AI — Análisis de Pliego</h2><pre>${escapeHtml(content)}</pre><br><button onclick="window.print()" style="background:#ff6b00;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px">Imprimir / Guardar PDF</button></body></html>`);
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Análisis THOTH AI</title><style>*{box-sizing:border-box}body{font-family:Arial,sans-serif;font-size:13px;line-height:1.7;padding:48px;max-width:820px;margin:0 auto;color:#111}.header{border-bottom:3px solid #ff6b00;padding-bottom:16px;margin-bottom:24px}.logo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#ff6b00;margin-bottom:6px}.title{font-size:20px;font-weight:700;color:#111}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:13px}.footer{margin-top:40px;padding-top:12px;border-top:1px solid #ddd;font-size:10px;color:#999}.no-print{margin-top:24px;display:flex;gap:10px}@media print{.no-print{display:none}}</style></head><body><div class="header"><div class="logo">THOTH AI Enterprise — Análisis Documental</div><div class="title">Análisis de Pliego</div></div><pre>${escapeHtml(content)}</pre><div class="footer">Generado por THOTH AI Enterprise · ${new Date().toLocaleDateString('es-AR')}</div><div class="no-print"><button onclick="window.print()" style="background:#ff6b00;color:#fff;border:none;padding:10px 22px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700">⬇ Guardar como PDF</button><button onclick="window.close()" style="background:#f0f0f0;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px">Cerrar</button></div></body></html>`);
   win.document.close();
-  toast('Abriendo vista de impresión PDF...');
+  toast('Abriendo vista PDF...');
+}
+function copiarRespuesta(){
+  const content=window._pliegoTexto||document.getElementById('pliegoRespuesta')?.innerText||'';
+  navigator.clipboard.writeText(content).then(()=>toast('Respuesta copiada al portapapeles')).catch(()=>toast('No se pudo copiar'));
 }
 function handleFiles(files){showModule('contratos');const list=document.getElementById('fileList');[...files].forEach(f=>{const item=document.createElement('div');item.className='fileItem';item.innerHTML=`<span>📎 ${escapeHtml(f.name)}</span><span class="statusPill pending">Cargado</span>`;list.appendChild(item)});ask(`Archivos cargados: ${[...files].map(f=>f.name).join(', ')}. Preparar análisis contractual.`)}
 function addContract(){showModule('contratos');const id='CT-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*900+100));document.getElementById('contractList').insertAdjacentHTML('beforeend',`<div class="rowCard"><strong>${id}</strong><span><b>Cliente a definir</b><br><span class="meta">Ajuste a definir · Sin fecha</span></span><span class="mono">$0</span><span class="statusPill pending">Borrador</span><button class="btn" onclick="ask('Analizar ${id}')">Analizar</button></div>`);toast('Contrato borrador creado')}
@@ -810,7 +1058,205 @@ function toggleAssistant(open){
   if(label) label.textContent=next?'Cerrar THOTH AI':'Ayuda THOTH AI';
 }
 function sendMsg(){const p=document.getElementById('prompt');const text=p.value.trim();if(!text)return;p.value='';const chat=document.getElementById('chat');chat.insertAdjacentHTML('beforeend',`<div class="msg user">${escapeHtml(text)}</div>`);setTimeout(()=>{chat.insertAdjacentHTML('beforeend',`<div class="msg"><b>Respuesta demo:</b><br>La interfaz está lista. Para respuesta real falta conectar backend con OpenAI/Claude y lectura de archivos.</div>`);chat.scrollTop=chat.scrollHeight},300);chat.scrollTop=chat.scrollHeight}
-function calcPoli(){const base=Number(document.getElementById('pcBase')?.value||0),coef=Number(document.getElementById('pcCoef')?.value||1),result=base*coef,diff=result-base,pct=(coef-1)*100,fmt=n=>n.toLocaleString('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0});document.getElementById('pcResult').textContent=fmt(result);document.getElementById('pcDelta').textContent='Variación estimada: '+pct.toFixed(2).replace('.',',')+'%';document.getElementById('pcBaseOut').textContent=fmt(base);document.getElementById('pcCoefOut').textContent=coef.toFixed(4).replace('.',',');document.getElementById('pcDiffOut').textContent=fmt(diff);toast('Actualización calculada correctamente')}
+const poliContratos={
+  YPF:[
+    {id:'CT-2025-001',label:'CT-2025-001 · Servicios generales',base:1550000,mo:0.38,mat:0.42,eq:0.15,fijo:0.05,varmo:18,varmat:22,vareq:15,inicioMes:'03',inicioAnio:'2024'},
+    {id:'CT-2025-004',label:'CT-2025-004 · Mantenimiento YPF',base:980000,mo:0.40,mat:0.38,eq:0.17,fijo:0.05,varmo:18,varmat:22,vareq:15,inicioMes:'06',inicioAnio:'2024'}
+  ],
+  PAE:[
+    {id:'CT-2025-003',label:'CT-2025-003 · Mantenimiento Industrial PAE',base:1100000,mo:0.35,mat:0.45,eq:0.15,fijo:0.05,varmo:18,varmat:22,vareq:15,inicioMes:'08',inicioAnio:'2024'}
+  ],
+  TGN:[
+    {id:'CT-2025-002',label:'CT-2025-002 · Servicio transporte TGN',base:890000,mo:0.42,mat:0.38,eq:0.15,fijo:0.05,varmo:18,varmat:22,vareq:15,inicioMes:'06',inicioAnio:'2024'}
+  ]
+};
+
+function initPoliAnios(){
+  const ahora=new Date();
+  const utc=ahora.getTime()+ahora.getTimezoneOffset()*60000;
+  const hoyBA=new Date(utc+(-180)*60000);
+  const anioActual=hoyBA.getFullYear();
+  const mesActual=hoyBA.getMonth()+1;
+
+  ['pcFechaBaseAnio','pcFechaActualAnio'].forEach(id=>{
+    const sel=document.getElementById(id);
+    if(!sel)return;
+    sel.innerHTML='';
+    for(let y=2022;y<=anioActual;y++){
+      const o=document.createElement('option');
+      o.value=String(y);o.textContent=String(y);
+      if(y===anioActual)o.selected=true;
+      sel.appendChild(o);
+    }
+  });
+
+  const selMesAct=document.getElementById('pcFechaActualMes');
+  const selAnioAct=document.getElementById('pcFechaActualAnio');
+  if(selMesAct)selMesAct.value=String(mesActual).padStart(2,'0');
+  if(selAnioAct)selAnioAct.value=String(anioActual);
+
+  const unAnioAtras=new Date(hoyBA);
+  unAnioAtras.setFullYear(unAnioAtras.getFullYear()-1);
+  const selMesBase=document.getElementById('pcFechaBaseMes');
+  const selAnioBase=document.getElementById('pcFechaBaseAnio');
+  if(selMesBase)selMesBase.value=String(unAnioAtras.getMonth()+1).padStart(2,'0');
+  if(selAnioBase)selAnioBase.value=String(unAnioAtras.getFullYear());
+
+  // Bloquear meses futuros en AMBOS selectores
+  bloquearMeses('pcFechaBaseMes','pcFechaBaseAnio');
+  bloquearMeses('pcFechaActualMes','pcFechaActualAnio');
+
+  if(selAnioAct)selAnioAct.addEventListener('change',()=>bloquearMeses('pcFechaActualMes','pcFechaActualAnio'));
+  if(selAnioBase)selAnioBase.addEventListener('change',()=>bloquearMeses('pcFechaBaseMes','pcFechaBaseAnio'));
+}
+
+function bloquearMeses(idMes, idAnio){
+  const ahora=new Date();
+  const utc=ahora.getTime()+ahora.getTimezoneOffset()*60000;
+  const hoyBA=new Date(utc+(-180)*60000);
+  const anioActual=hoyBA.getFullYear();
+  const mesActual=hoyBA.getMonth()+1;
+
+  const selAnio=document.getElementById(idAnio);
+  const selMes=document.getElementById(idMes);
+  if(!selAnio||!selMes)return;
+
+  const anioSel=parseInt(selAnio.value);
+  const mesSel=parseInt(selMes.value);
+
+  Array.from(selMes.options).forEach(o=>{
+    const m=parseInt(o.value);
+    // Bloquear si el año seleccionado es el actual Y el mes es posterior al actual
+    const bloqueado=(anioSel===anioActual && m>mesActual);
+    o.disabled=bloqueado;
+    o.style.color=bloqueado?'#444':'';
+    o.style.fontStyle=bloqueado?'italic':'';
+  });
+
+  // Si el mes seleccionado quedó bloqueado, resetear al mes actual
+  if(anioSel===anioActual && mesSel>mesActual){
+    selMes.value=String(mesActual).padStart(2,'0');
+  }
+}
+
+function actualizarMesesHabilitados(){
+  bloquearMeses('pcFechaActualMes','pcFechaActualAnio');
+}
+
+function filtrarContratos(){
+  const emp=document.getElementById('pcEmpresa').value;
+  const sel=document.getElementById('pcContract');
+  sel.innerHTML='<option value="">— Seleccionar contrato —</option>';
+  if(emp && poliContratos[emp]){
+    poliContratos[emp].forEach(c=>{
+      const o=document.createElement('option');
+      o.value=c.id;o.textContent=c.label;
+      o.dataset.base=c.base;o.dataset.mo=c.mo;o.dataset.mat=c.mat;
+      o.dataset.eq=c.eq;o.dataset.fijo=c.fijo;
+      o.dataset.varmo=c.varmo;o.dataset.varmat=c.varmat;o.dataset.vareq=c.vareq;
+      o.dataset.iniciomes=c.inicioMes;o.dataset.inicioanio=c.inicioAnio;
+      sel.appendChild(o);
+    });
+  }
+}
+
+function cargarDatosContrato(){
+  const sel=document.getElementById('pcContract');
+  const opt=sel.options[sel.selectedIndex];
+  if(!opt||!opt.dataset.base)return;
+  const selMesBase=document.getElementById('pcFechaBaseMes');
+  const selAnioBase=document.getElementById('pcFechaBaseAnio');
+  if(selMesBase&&opt.dataset.iniciomes)selMesBase.value=opt.dataset.iniciomes;
+  if(selAnioBase&&opt.dataset.inicioanio)selAnioBase.value=opt.dataset.inicioanio;
+  const ahora=new Date();
+  const utc=ahora.getTime()+ahora.getTimezoneOffset()*60000;
+  const hoyBA=new Date(utc+(-3*60)*60000);
+  const selMesAct=document.getElementById('pcFechaActualMes');
+  const selAnioAct=document.getElementById('pcFechaActualAnio');
+  if(selMesAct)selMesAct.value=String(hoyBA.getMonth()+1).padStart(2,'0');
+  if(selAnioAct)selAnioAct.value=hoyBA.getFullYear();
+  bloquearMeses('pcFechaBaseMes','pcFechaBaseAnio');
+  bloquearMeses('pcFechaActualMes','pcFechaActualAnio');
+  toast('Período: inicio contrato → hoy (Buenos Aires)');
+}
+function calcPoli(){
+  const empresa=document.getElementById('pcEmpresa');
+  const contrato=document.getElementById('pcContract');
+  const mesBase=parseInt(document.getElementById('pcFechaBaseMes')?.value||'1');
+  const anioBase=parseInt(document.getElementById('pcFechaBaseAnio')?.value||'2024');
+  const mesAct=parseInt(document.getElementById('pcFechaActualMes')?.value||'5');
+  const anioAct=parseInt(document.getElementById('pcFechaActualAnio')?.value||'2025');
+  const opt=contrato.options[contrato.selectedIndex];
+  if(!opt||!opt.dataset.base){toast('Seleccionar empresa y contrato primero');return;}
+
+  // Validate: base must be before hasta
+  const totalMesesBase=anioBase*12+mesBase;
+  const totalMesesAct=anioAct*12+mesAct;
+  if(totalMesesBase>=totalMesesAct){
+    toast('⚠ La fecha base debe ser anterior a la fecha hasta');
+    return;
+  }
+
+  // Months elapsed
+  const mesesTranscurridos=totalMesesAct-totalMesesBase;
+
+  const a=Number(opt.dataset.mo||0.38);
+  const b=Number(opt.dataset.mat||0.42);
+  const c=Number(opt.dataset.eq||0.15);
+  const d=Number(opt.dataset.fijo||0.05);
+
+  // Annual variation rates from contract data
+  const varMOanual=Number(opt.dataset.varmo||18);
+  const varMATanual=Number(opt.dataset.varmat||22);
+  const varEQanual=Number(opt.dataset.vareq||15);
+
+  // Scale to actual period (proportional to months elapsed vs 12)
+  const factor=mesesTranscurridos/12;
+  const varMOp=varMOanual*factor;
+  const varMATp=varMATanual*factor;
+  const varEQp=varEQanual*factor;
+
+  const mo1=100+varMOp, mat1=100+varMATp, eq1=100+varEQp;
+  const coef=a*(mo1/100)+b*(mat1/100)+c*(eq1/100)+d;
+  const pct=(coef-1)*100;
+  const fmt=n=>(n>=0?'+':'')+n.toFixed(1).replace('.',',')+'%';
+  const meses=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+  // Table
+  const tbody=document.getElementById('poliTabla');
+  const rows=[
+    {label:'Mano de obra',pond:a,var:varMOp,aporte:a*(mo1/100)-a},
+    {label:'Materiales',pond:b,var:varMATp,aporte:b*(mat1/100)-b},
+    {label:'Equipos',pond:c,var:varEQp,aporte:c*(eq1/100)-c},
+    {label:'Componente fijo',pond:d,var:0,aporte:0}
+  ];
+  tbody.innerHTML=rows.map((r,i)=>`
+    <tr style="${i<rows.length-1?'border-bottom:1px solid var(--line)':''}">
+      <td style="padding:10px 14px;font-weight:600;font-size:13px">${r.label}</td>
+      <td style="padding:10px 14px;text-align:center;font-family:var(--mono);font-size:12px;border-left:1px solid var(--line)">${(r.pond*100).toFixed(0)}%</td>
+      <td style="padding:10px 14px;text-align:center;font-family:var(--mono);font-size:13px;font-weight:600;border-left:1px solid var(--line);color:${r.var>0?'var(--ok)':'var(--muted)'}">${r.var>0?fmt(r.var):'—'}</td>
+      <td style="padding:10px 14px;text-align:center;font-family:var(--mono);font-size:12px;border-left:1px solid var(--line);color:var(--muted)">${r.aporte>0?'+'+r.aporte.toFixed(4):'—'}</td>
+    </tr>
+  `).join('');
+
+  const labelBase=`${meses[mesBase-1]} ${anioBase}`;
+  const labelAct=`${meses[mesAct-1]} ${anioAct}`;
+  const periodo=`${labelBase} → ${labelAct} (${mesesTranscurridos} meses)`;
+
+  document.getElementById('poliResult').style.opacity='1';
+  document.getElementById('pcResult').textContent=coef.toFixed(4).replace('.',',');
+  document.getElementById('pcDelta').textContent='Variación: '+fmt(pct);
+  document.getElementById('pcEmpresaOut').textContent=empresa.options[empresa.selectedIndex]?.text||'—';
+  document.getElementById('pcContratoOut').textContent=opt.textContent||'—';
+  document.getElementById('pcPeriodoOut').textContent=periodo;
+  document.getElementById('pcCoefOut').textContent=coef.toFixed(4).replace('.',',');
+  document.getElementById('pcVarTotal').textContent=fmt(pct);
+  document.getElementById('pcVarTotal').style.color=pct>0?'var(--ok)':'var(--danger)';
+  document.getElementById('pcVarMO').textContent=fmt(varMOp);
+  document.getElementById('pcVarMAT').textContent=fmt(varMATp);
+  document.getElementById('pcVarEQ').textContent=fmt(varEQp);
+  toast('Evolución calculada — '+mesesTranscurridos+' meses');
+}
 function toast(msg){const box=document.getElementById('toastBox'),t=document.createElement('div');t.className='toast';t.textContent=msg;box.appendChild(t);setTimeout(()=>t.remove(),3200)}
 function escapeHtml(s){return s.replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
 function drawPie(){
@@ -838,10 +1284,161 @@ function drawPie(){
   ctx.beginPath();ctx.arc(cx,cy,inner,0,Math.PI*2);
   ctx.fillStyle=document.body.classList.contains('dark')?'#151516':'#fffaf4';ctx.fill();
 }
+// ─── CASHFLOW HELPERS ───
+function fmtM(n){if(n===0)return'—';const abs=Math.abs(n);const str=abs>=1000000?(abs/1000000).toFixed(1)+'M':(abs/1000).toFixed(0)+'K';return(n<0?'($':'$')+str+(n<0?')':'');}
+function fmtFull(n){if(n===0)return'—';const abs=Math.abs(n).toLocaleString('es-AR');return n<0?`($${abs})`:`$${abs}`;}
+function badgeHtml(e){const m={ok:'<span style="font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;background:rgba(61,190,140,.09);color:#3dbe8c;border:1px solid rgba(61,190,140,.2)">OK</span>',warn:'<span style="font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;background:rgba(212,137,42,.1);color:#d4892a;border:1px solid rgba(212,137,42,.22)">BAJA</span>',nodata:'<span style="font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;background:rgba(74,144,217,.1);color:#4a90d9;border:1px solid rgba(74,144,217,.2)">SIN DATOS</span>',crit:'<span style="font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;background:rgba(224,82,82,.1);color:#e05252;border:1px solid rgba(224,82,82,.2)">IMP. RENTA</span>'};return m[e]||m.ok;}
+
+// ─── CASHFLOW DATA ───
+const CF_DATA=[
+  {mes:'Enero',   ing:8807183,   egr:-1528519,   neto:7278664,   acum:7278664,   estado:'ok'},
+  {mes:'Febrero', ing:10239504,  egr:-1777104,   neto:8462400,   acum:15741064,  estado:'ok'},
+  {mes:'Marzo',   ing:23996430,  egr:-4164670,   neto:19831760,  acum:35572824,  estado:'ok'},
+  {mes:'Abril',   ing:34212314,  egr:-5937674,   neto:28274640,  acum:63847464,  estado:'ok'},
+  {mes:'Mayo',    ing:55830174,  egr:-9689534,   neto:46140640,  acum:109988104, estado:'ok'},
+  {mes:'Junio',   ing:62260987,  egr:-10805626,  neto:51455361,  acum:161443465, estado:'ok'},
+  {mes:'Julio',   ing:61748802,  egr:-10716734,  neto:51032068,  acum:212475533, estado:'ok'},
+  {mes:'Agosto',  ing:70236293,  egr:-12189770,  neto:58046523,  acum:270522057, estado:'ok'},
+  {mes:'Septiembre',ing:47819752,egr:-8299296,   neto:39520456,  acum:310042513, estado:'warn'},
+  {mes:'Octubre', ing:50155811,  egr:-8704728,   neto:41451083,  acum:351493596, estado:'ok'},
+  {mes:'Noviembre',ing:0,        egr:0,          neto:0,         acum:351493596, estado:'nodata'},
+  {mes:'Diciembre',ing:0,        egr:-12759218,  neto:-12759218, acum:351493596, estado:'crit'},
+];
+let cfMetric='acum';
+let cfFrom=0, cfTo=9;
+
+function setCfMetric(m,btn){
+  cfMetric=m;
+  document.querySelectorAll('#cfMetricBtns button').forEach(b=>{b.style.background='transparent';b.style.color='var(--muted)';});
+  btn.style.background='#ff6b00';btn.style.color='#fff';
+  drawCfChart();
+}
+
+function setCfPeriod(from,to,btn){
+  cfFrom=from;cfTo=to;
+  document.querySelectorAll('#cfPeriodBtns button').forEach(b=>{b.style.background='transparent';b.style.color='var(--muted)';});
+  btn.style.background='#ff6b00';btn.style.color='#fff';
+  document.getElementById('cfDesde').value=from;
+  document.getElementById('cfHasta').value=to;
+  filtrarCashflow();
+}
+
+function drawCfChart(){
+  const svg=document.getElementById('cfSvg');
+  if(!svg)return;
+  const lo=Math.min(cfFrom,cfTo),hi=Math.max(cfFrom,cfTo);
+  const slice=CF_DATA.slice(lo,hi+1);
+  const n=slice.length;
+  const W=900,H=200,padT=20,padB=30,padX=10;
+
+  // 3 series: Operativo (neto), Inversión (0 para 2025), Financiero (0 para 2025)
+  const series=[
+    {key:'neto',color:'#ff6b00',label:'Operativo',dash:'',fill:true},
+    {key:'inv', color:'#4a90d9',label:'Inversión', dash:'8,4',fill:false},
+    {key:'fin', color:'#3dbe8c',label:'Financiero',dash:'4,4',fill:false},
+  ];
+  // Inversión y Financiero son 0 en 2025
+  const allVals=slice.map(r=>[r.neto,r.inv||0,r.fin||0]).flat();
+  const minV=Math.min(...allVals,0);
+  const maxV=Math.max(...allVals,1);
+  const sy=v=>padT+(1-(v-minV)/(maxV-minV||1))*(H-padT-padB);
+  const sx=i=>padX+(i/(n-1||1))*(W-padX*2);
+  const zY=sy(0);
+
+  let html=`<defs>
+    <linearGradient id="cfGradOp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff6b00" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ff6b00" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+  <!-- grid lines -->
+  <line x1="${padX}" y1="${sy(maxV).toFixed(1)}" x2="${W-padX}" y2="${sy(maxV).toFixed(1)}" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+  <line x1="${padX}" y1="${zY.toFixed(1)}" x2="${W-padX}" y2="${zY.toFixed(1)}" stroke="rgba(255,255,255,.08)" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- y label -->
+  <text x="${padX}" y="${(sy(maxV)-4).toFixed(1)}" font-family="monospace" font-size="10" fill="rgba(255,255,255,.3)">${fmtM(maxV)}</text>
+  <text x="${padX}" y="${(zY-4).toFixed(1)}" font-family="monospace" font-size="10" fill="rgba(255,255,255,.25)">$0</text>`;
+
+  series.forEach(s=>{
+    const vals=slice.map((r,i)=>({x:sx(i),y:sy(s.key==='neto'?r.neto:s.key==='inv'?0:0),v:s.key==='neto'?r.neto:0}));
+    const pts=vals.map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    if(s.fill){
+      const area=`${sx(0).toFixed(1)},${H-padB} ${pts} ${sx(n-1).toFixed(1)},${H-padB}`;
+      html+=`<polygon points="${area}" fill="url(#cfGradOp)"/>`;
+    }
+    html+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="${s.fill?2.5:1.8}" stroke-linejoin="round" stroke-linecap="round" ${s.dash?`stroke-dasharray="${s.dash}"`:''} opacity="${s.fill?1:.7}"/>`;
+    // dots only for operativo
+    if(s.fill){
+      vals.forEach((p,i)=>{
+        html+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="${s.color}" stroke="var(--panel)" stroke-width="2" style="cursor:pointer" onmouseenter="showCfTip(event,${i},${lo})" onmouseleave="hideCfTip()"/>`;
+      });
+    }
+  });
+
+  // Note for 0 series
+  html+=`<text x="${W/2}" y="${H-8}" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,.2)">Inversión y Financiamiento: sin datos 2025</text>`;
+
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=html;
+
+  const xl=document.getElementById('cfXLabels');
+  if(xl){xl.innerHTML=slice.map(r=>`<div style="flex:1;text-align:center;font-family:var(--mono);font-size:9px;color:var(--muted)">${r.mes.slice(0,3)}</div>`).join('');xl.style.display='flex';}
+}
+
+function showCfTip(e,idx,lo){
+  const r=CF_DATA[lo+idx];
+  const tip=document.getElementById('cfTooltip');
+  if(!tip)return;
+  tip.innerHTML=`<div style="color:var(--muted);margin-bottom:6px;font-weight:600">${r.mes} 2025</div>
+    <div style="color:#ff6b00">Operativo: ${r.neto>=0?'+':''}$${Math.abs(r.neto).toLocaleString('es-AR')}</div>
+    <div style="color:#4a90d9;opacity:.6">Inversión: $0</div>
+    <div style="color:#3dbe8c;opacity:.6">Financiero: $0</div>`;
+  tip.style.display='block';
+  const rect=e.target.closest('div[style*="position:relative"]')?.getBoundingClientRect()||e.target.getBoundingClientRect();
+  const svgRect=e.target.closest('svg').getBoundingClientRect();
+  const cx=e.clientX-svgRect.left;
+  tip.style.left=Math.min(cx+16,svgRect.width-200)+'px';
+  tip.style.top='10px';
+}
+function hideCfTip(){const t=document.getElementById('cfTooltip');if(t)t.style.display='none';}
+
+function filtrarCashflow(){
+  const desde=parseInt(document.getElementById('cfDesde')?.value??0);
+  const hasta=parseInt(document.getElementById('cfHasta')?.value??11);
+  cfFrom=desde;cfTo=hasta;
+  const lo=Math.min(desde,hasta),hi=Math.max(desde,hasta);
+  const slice=CF_DATA.slice(lo,hi+1);
+  const totIng=slice.reduce((s,r)=>s+r.ing,0);
+  const totEgr=slice.reduce((s,r)=>s+r.egr,0);
+  const totNeto=totIng+totEgr;
+  document.getElementById('kpiIngresos').textContent=fmtM(totIng);
+  document.getElementById('kpiEgresos').textContent=fmtM(totEgr);
+  document.getElementById('kpiFlujo').textContent=(totNeto>=0?'+':'')+fmtM(totNeto);
+  drawCfChart();
+  const tbody=document.getElementById('cfTbody');if(!tbody)return;
+  let acumRun=lo>0?CF_DATA[lo-1].acum:0;
+  tbody.innerHTML=slice.map(r=>{acumRun+=r.neto;const rb=r.estado==='warn'?'background:rgba(212,137,42,.05)':r.estado==='crit'?'background:rgba(224,82,82,.05)':'';const nc=r.neto<0?'color:#e05252':r.neto===0?'color:var(--muted)':'color:#3dbe8c';return`<tr style="${rb};border-bottom:1px solid var(--line)"><td style="padding:9px 16px;font-family:var(--mono);font-size:12px">${r.mes}</td><td style="padding:9px 16px;text-align:right;font-family:var(--mono);font-size:12px">${r.ing>0?'$'+r.ing.toLocaleString('es-AR'):'—'}</td><td style="padding:9px 16px;text-align:right;font-family:var(--mono);font-size:12px;color:#e05252">${r.egr<0?fmtFull(r.egr):'—'}</td><td style="padding:9px 16px;text-align:right;font-family:var(--mono);font-size:12px;${nc}">${r.neto!==0?(r.neto>0?'+':'')+fmtFull(r.neto):'—'}</td><td style="padding:9px 16px;text-align:right;font-family:var(--mono);font-size:12px">$${acumRun.toLocaleString('es-AR')}</td><td style="padding:9px 16px;text-align:center">${badgeHtml(r.estado)}</td></tr>`;}).join('');
+  tbody.innerHTML+=`<tr style="border-top:2px solid var(--line2);font-weight:700"><td style="padding:10px 16px;font-size:12px">TOTAL</td><td style="padding:10px 16px;text-align:right;font-family:var(--mono);font-size:12px;color:#3dbe8c">$${totIng.toLocaleString('es-AR')}</td><td style="padding:10px 16px;text-align:right;font-family:var(--mono);font-size:12px;color:#e05252">${fmtFull(totEgr)}</td><td style="padding:10px 16px;text-align:right;font-family:var(--mono);font-size:12px;color:${totNeto>=0?'#3dbe8c':'#e05252'}">${(totNeto>=0?'+':'')+fmtFull(totNeto)}</td><td style="padding:10px 16px;text-align:right;font-family:var(--mono);font-size:12px">$${CF_DATA[hi].acum.toLocaleString('es-AR')}</td><td></td></tr>`;
+}
+function descargarCashflowExcel(){
+  const desde=parseInt(document.getElementById('cfDesde')?.value??0);
+  const hasta=parseInt(document.getElementById('cfHasta')?.value??11);
+  const lo=Math.min(desde,hasta),hi=Math.max(desde,hasta);
+  const slice=CF_DATA.slice(lo,hi+1);
+  let csv='Mes;Ingresos;Egresos;Flujo Neto;Saldo Acumulado;Estado\n';
+  let acum=lo>0?CF_DATA[lo-1].acum:0;
+  slice.forEach(r=>{acum+=r.neto;csv+=`${r.mes};${r.ing};${r.egr};${r.neto};${acum};${r.estado}\n`;});
+  const totIng=slice.reduce((s,r)=>s+r.ing,0),totEgr=slice.reduce((s,r)=>s+r.egr,0);
+  csv+=`TOTAL;${totIng};${totEgr};${totIng+totEgr};;\n`;
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='INDIO_SRL_CashFlow_2025.csv';a.click();
+  toast('Descargando CSV para Excel...');
+}
 window.addEventListener('DOMContentLoaded',()=>{
   drawPie();
+  initPoliAnios();
+  filtrarCashflow();
   const orig=window.toggleTheme;
-  window.toggleTheme=function(){orig();setTimeout(drawPie,60)};
+  window.toggleTheme=function(){orig();setTimeout(drawPie,60);setTimeout(drawCfChart,60);};
 });
 </script>
 </body>
